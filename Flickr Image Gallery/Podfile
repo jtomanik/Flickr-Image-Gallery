@@ -1,0 +1,14 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+# Uncomment this line to define a global platform for your project
+platform :ios, '10.0'
+# Uncomment this line if you're using Swift
+use_frameworks!
+
+def pods
+
+end
+
+target 'Flickr Image Gallery' do
+    pods
+end
