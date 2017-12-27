@@ -9,6 +9,7 @@
 import XCTest
 @testable import Flickr_Image_Gallery
 
+// swiftlint:disable type_name
 class Flickr_Image_GalleryTests: XCTestCase {
     
     override func setUp() {

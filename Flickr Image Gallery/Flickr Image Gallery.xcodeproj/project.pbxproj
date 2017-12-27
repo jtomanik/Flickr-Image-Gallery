@@ -14,6 +14,7 @@
 		7A3C9C601FF3D6B7007A7DCF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A3C9C5F1FF3D6B7007A7DCF /* Assets.xcassets */; };
 		7A3C9C631FF3D6B7007A7DCF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A3C9C611FF3D6B7007A7DCF /* LaunchScreen.storyboard */; };
 		7A3C9C6E1FF3D6B7007A7DCF /* Flickr_Image_GalleryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3C9C6D1FF3D6B7007A7DCF /* Flickr_Image_GalleryTests.swift */; };
+		7A3C9C831FF3FF25007A7DCF /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 7A3C9C821FF3FF25007A7DCF /* .swiftlint.yml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +42,7 @@
 		7A3C9C6F1FF3D6B7007A7DCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7A3C9C7E1FF3FD61007A7DCF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		7A3C9C7F1FF3FD61007A7DCF /* bitrise.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bitrise.yml; path = ../bitrise.yml; sourceTree = "<group>"; };
+		7A3C9C821FF3FF25007A7DCF /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		E4D67439110FBF217614B7CA /* Pods-Flickr Image Gallery.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flickr Image Gallery.release.xcconfig"; path = "Pods/Target Support Files/Pods-Flickr Image Gallery/Pods-Flickr Image Gallery.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -74,6 +76,7 @@
 		7A3C9C4C1FF3D6B7007A7DCF = {
 			isa = PBXGroup;
 			children = (
+				7A3C9C821FF3FF25007A7DCF /* .swiftlint.yml */,
 				7A3C9C7F1FF3FD61007A7DCF /* bitrise.yml */,
 				7A3C9C7E1FF3FD61007A7DCF /* README.md */,
 				7A3C9C571FF3D6B7007A7DCF /* Flickr Image Gallery */,
@@ -132,6 +135,7 @@
 			buildConfigurationList = 7A3C9C721FF3D6B7007A7DCF /* Build configuration list for PBXNativeTarget "Flickr Image Gallery" */;
 			buildPhases = (
 				2222CC0F70D8ED0AA5220133 /* [CP] Check Pods Manifest.lock */,
+				7A3C9C841FF3FF74007A7DCF /* Swiftlint */,
 				7A3C9C511FF3D6B7007A7DCF /* Sources */,
 				7A3C9C521FF3D6B7007A7DCF /* Frameworks */,
 				7A3C9C531FF3D6B7007A7DCF /* Resources */,
@@ -210,6 +214,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A3C9C831FF3FF25007A7DCF /* .swiftlint.yml in Resources */,
 				7A3C9C631FF3D6B7007A7DCF /* LaunchScreen.storyboard in Resources */,
 				7A3C9C601FF3D6B7007A7DCF /* Assets.xcassets in Resources */,
 				7A3C9C5E1FF3D6B7007A7DCF /* Main.storyboard in Resources */,
@@ -258,6 +263,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Flickr Image Gallery/Pods-Flickr Image Gallery-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		7A3C9C841FF3FF74007A7DCF /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 		F39F365802C8E2B633AA30E3 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
