@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  PhotoListViewController.swift
 //  Flickr Image Gallery
 //
 //  Created by Jakub Tomanik on 27/12/2017.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class PhotoListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +19,4 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
 }
-

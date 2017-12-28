@@ -1,8 +1,8 @@
 strings:
-  paths: "Flickr Image Gallery/Base.lproj/Localizable.strings"
+  paths: "Flickr Image Gallery/Support Files/Base.lproj/Localizable.strings"
   templateName: structured-swift3
   output: "Flickr Image Gallery/Common/strings.swift"
 xcassets:
-  paths: "Flickr Image Gallery/Assets.xcassets"
+  paths: "Flickr Image Gallery/Support Files/Assets.xcassets"
   templateName: swift3
   output: "Flickr Image Gallery/Common/assets-images.swift"
