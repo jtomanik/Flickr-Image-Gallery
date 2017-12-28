@@ -1,10 +1,8 @@
 disabled_rules: # rule identifiers to exclude from running
-  - missing_docs
   - todo
 opt_in_rules: # some rules are only opt-in
   - empty_count
   - vertical_whitespace
-  - conditional_returns_on_newline
   - force_unwrapping
   - attributes
   - closure_end_indentation

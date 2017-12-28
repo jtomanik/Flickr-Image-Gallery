@@ -3,6 +3,8 @@ format_version: '4'
 default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
 project_type: ios
 trigger_map:
+- push_branch: "*"
+  workflow: primary
 - pull_request_source_branch: "*"
   workflow: primary
 workflows:
@@ -35,6 +37,7 @@ workflows:
     - cache-pull@2.0.1: {}
     - brew-install@0.9.0:
         inputs:
+        - upgrade: 'no'
         - packages: swiftlint swiftgen
     - script@1.1.5:
         title: Do anything with Script step
