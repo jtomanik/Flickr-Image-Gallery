@@ -15,6 +15,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+
+        setupWindow()
+
         return true
+    }
+
+    private func setupWindow() {
+        let bounds = UIScreen.main.bounds
+        window = UIWindow(frame: bounds)
+        window?.backgroundColor = UIColor.white
+        let mainVC = PhotoListViewController()
+        let rootVC = UINavigationController(rootViewController: mainVC)
+        window?.rootViewController = rootVC
+        self.window?.makeKeyAndVisible()
     }
 }

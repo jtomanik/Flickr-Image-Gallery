@@ -24,6 +24,7 @@
                     "Pods/**",
                     "Podfile*",
                     "**/*.plist",
+                    "**/*.json",
                     "**/*.yml"
     ],
     "dictionaries": ["softwareTerm", "swift"],

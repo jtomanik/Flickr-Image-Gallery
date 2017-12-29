@@ -64,5 +64,7 @@ variable_name:
     - map
     - old
     - ids
+    - all
+    - top
 reporter: "xcode" # reporter type (xcode, json, csv, checkstyle, junit)
 

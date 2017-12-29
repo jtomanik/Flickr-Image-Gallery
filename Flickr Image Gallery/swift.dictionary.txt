@@ -67,3 +67,5 @@ true
 try
 weak
 willSet
+CGRect
+Registrator
