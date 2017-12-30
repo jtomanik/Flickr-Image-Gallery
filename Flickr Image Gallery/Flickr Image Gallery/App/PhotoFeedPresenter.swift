@@ -10,15 +10,14 @@ import Foundation
 import RxSwift
 import RxCocoa
 
+/// The Presenter
 /// This Presenter is responsible for driving PhotoFeed screen.
 /// It is a common ground between "Presenter" and "ViewModel" from two sister architectures MVP and MVVM,
 /// It has following characteristics:
 /// * Presenter is owned by the View
 /// * Presenter contains all presentation logic
-/// * View delegates user interactions to the Presenter
 /// * Presenter contains the logic to handle user interactions
-/// * Presenter provides reactive data binding mechanism to the View to update it's appearance automatically
-/// * View's appearance is controlled through DisplayModels that encapsulate all data to be presented
+/// * Presenter provides reactive data binding mechanism to the View via DisplayModels to update Views's appearance automatically
 /// * Presenter has no references to the View
 /// * Presenter has all it's dependencies injected
 /// * Presenter has no dependencies to UIKit
