@@ -14,8 +14,26 @@ protocol PhotoFeedRepository {
     func getPublicFeed() -> Observable<[PhotoItem]>
 }
 
-    func getPublicFeed() -> [PhotoItem] {
-        return generateMockData()
+struct PhotoFeedService: PhotoFeedRepository {
+
+    func getPublicFeed() -> Observable<[PhotoItem]> {
+        /// Current implementation mocks data source that provides two or more results for each request.
+        /// First result comes from the cache and subsequent result(s) come from the backend.
+        /// All work is performed on the backend queue.
+
+        let cacheDelay = Int(arc4random_uniform(10)*100)
+        let serverDelay = Int(arc4random_uniform(6)*1000)
+        return Observable.create { observer in
+            DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + .milliseconds(cacheDelay)) {
+                observer.onNext(self.generateMockData())
+            }
+
+            DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + .milliseconds(serverDelay)) {
+                observer.onNext(self.generateMockData())
+                observer.onCompleted()
+            }
+            return Disposables.create()
+        }
     }
 }
 
