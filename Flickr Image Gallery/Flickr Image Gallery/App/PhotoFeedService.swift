@@ -7,8 +7,12 @@
 //
 
 import Foundation
+import RxSwift
 
-struct PhotoFeedService {
+/// Abstraction to hide implementation details and prevent tight coupling between Presenter and DataSource
+protocol PhotoFeedRepository {
+    func getPublicFeed() -> Observable<[PhotoItem]>
+}
 
     func getPublicFeed() -> [PhotoItem] {
         return generateMockData()
