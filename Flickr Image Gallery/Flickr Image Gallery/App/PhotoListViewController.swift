@@ -19,7 +19,7 @@ import RxCocoa
 /// * View contains all the necessary subviews
 /// * View delegates user interactions to the Presenter
 /// * View's appearance is controlled through DisplayModels that encapsulate all data to be presented
-/// * View binds to reactive properties of the presenter to get updates aboub DisplayModel changes
+/// * View binds to reactive properties of the presenter to get updates about DisplayModel changes
 final class PhotoListViewController: UIViewController {
 
     private var presenter: PhotoFeedPresenter!
