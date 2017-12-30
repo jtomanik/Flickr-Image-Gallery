@@ -25,7 +25,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let bounds = UIScreen.main.bounds
         window = UIWindow(frame: bounds)
         window?.backgroundColor = UIColor.white
-        let mainVC = PhotoListViewController()
+        let feedService = PhotoFeedService()
+        let feedPresenter = PhotoFeedPresenter(repository: feedService)
+        let mainVC = PhotoListViewController(presenter: feedPresenter)
         let rootVC = UINavigationController(rootViewController: mainVC)
         window?.rootViewController = rootVC
         self.window?.makeKeyAndVisible()
