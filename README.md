@@ -25,6 +25,8 @@ If you don't have it run `brew install swiftlint` in your terminal.
 SwiftGen is required to automatically generate `assets-images.swift` and ` strings.swift` from image assets and localized strings respectively.
 If you don't have it run `brew install swiftgen`
 
+Note: Due to hardcoded path in one dependency (`Kingfisher`) this project will not compile if your Xcode executable was renamed to something else that default `Xcode.app`.
+
 ## Optional tools
 This project contains configuration files for optional tools that I use. Those tools are not necessary to build a project.
 use with following tools:
