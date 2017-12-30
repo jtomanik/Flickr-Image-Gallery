@@ -1,12 +1,14 @@
+input_dir: "Flickr Image Gallery/Support Files/"
+output_dir: "Flickr Image Gallery/Common/Styling/"
 strings:
-  paths: "Flickr Image Gallery/Support Files/Base.lproj/Localizable.strings"
-  templateName: structured-swift3
-  output: "Flickr Image Gallery/Common/Styling/strings.swift"
+  paths: "Base.lproj/Localizable.strings"
+  templatePath: "Flickr Image Gallery/Common/Styling/Strings.stencil"
+  output: "Strings.swift"
 xcassets:
-  paths: "Flickr Image Gallery/Support Files/Assets.xcassets"
-  templateName: swift3
-  output: "Flickr Image Gallery/Common/Styling/assets-images.swift"
+  paths: "Assets.xcassets"
+  templatePath: "Flickr Image Gallery/Common/Styling/Images.stencil"
+  output: "Images.swift"
 colors:
-  paths: "Flickr Image Gallery/Support Files/FlickrGallery.clr"
-  templateName: swift3
-  output: "Flickr Image Gallery/Common/Styling/colors.swift"
+  paths: "FlickrGallery.clr"
+  templatePath: "Flickr Image Gallery/Common/Styling/Colors.stencil"
+  output: "Colors.swift"

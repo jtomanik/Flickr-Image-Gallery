@@ -1,5 +1,6 @@
 // Generated using SwiftGen, by O.Halligon — https://github.com/SwiftGen/SwiftGen
 
+{% if palettes %}
 import UIKit.UIColor
 
 // swiftlint:disable superfluous_disable_command
@@ -23,8 +24,22 @@ struct ColorName: ColorProvider {
   let rgbaValue: UInt32
   var color: UIColor { return UIColor(named: self) }
 
-  /// 0xffffffff (r: 255, g: 255, b: 255, a: 255)
-  static let defaultBackground = ColorName(rgbaValue: 0xffffffff)
+{% macro rgbaValue color %}0x{{color.red}}{{color.green}}{{color.blue}}{{color.alpha}}{% endmacro %}
+{% macro enumBlock colors sp %}
+{{sp}}  {% for color in colors %}
+{{sp}}  /// 0x{{color.red}}{{color.green}}{{color.blue}}{{color.alpha}} (r: {{color.red|hexToInt}}, g: {{color.green|hexToInt}}, b: {{color.blue|hexToInt}}, a: {{color.alpha|hexToInt}})
+{{sp}}  static let {{color.name|swiftIdentifier:"pretty"|lowerFirstWord|escapeReservedKeywords}} = ColorName(rgbaValue: {% call rgbaValue color %})
+{{sp}}  {% endfor %}
+{% endmacro %}
+  {% if palettes.count > 1 %}
+  {% for palette in palettes %}
+  enum {{palette.name|swiftIdentifier:"pretty"|escapeReservedKeywords}} {
+    {% call enumBlock palette.colors "  " %}
+  }
+  {% endfor %}
+  {% else %}
+  {% call enumBlock palettes.first.colors "" %}
+  {% endif %}
 }
 // swiftlint:enable identifier_name line_length type_body_length
 
@@ -33,3 +48,6 @@ extension UIColor {
     self.init(rgbaValue: color.rgbaValue)
   }
 }
+{% else %}
+// No color found
+{% endif %}
