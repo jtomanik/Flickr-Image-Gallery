@@ -25,11 +25,11 @@ struct PhotoFeedService: PhotoFeedRepository {
         let serverDelay = Int(arc4random_uniform(6)*1000)
         return Observable.create { observer in
             DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + .milliseconds(cacheDelay)) {
-                observer.onNext(self.generateMockData())
+                observer.onNext(PhotoFeedMock.generateMockData(forResource: "mock"))
             }
 
             DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + .milliseconds(serverDelay)) {
-                observer.onNext(self.generateMockData())
+                observer.onNext(PhotoFeedMock.generateMockData(forResource: "mock"))
                 observer.onCompleted()
             }
             return Disposables.create()
@@ -37,10 +37,10 @@ struct PhotoFeedService: PhotoFeedRepository {
     }
 }
 
-extension PhotoFeedService {
+struct PhotoFeedMock {
 
-    fileprivate func generateMockData() -> [PhotoItem] {
-        guard let filePath = Bundle.main.path(forResource: "mock", ofType: ".json") else {
+    static func generateMockData(forResource resource: String) -> [PhotoItem] {
+        guard let filePath = Bundle.main.path(forResource: resource, ofType: ".json") else {
             return []
         }
 

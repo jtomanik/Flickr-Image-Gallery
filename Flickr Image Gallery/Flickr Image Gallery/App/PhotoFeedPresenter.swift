@@ -44,7 +44,7 @@ final class PhotoFeedPresenter {
     /// `configure()` is called after the View is loaded
     func configure() {
         refreshTrigger
-            .flatMap { [repository] _ in repository.getPublicFeed() }
+            .flatMapLatest { [repository] _ in repository.getPublicFeed() }
             .bind(to: models)
             .disposed(by: disposeBag)
     }

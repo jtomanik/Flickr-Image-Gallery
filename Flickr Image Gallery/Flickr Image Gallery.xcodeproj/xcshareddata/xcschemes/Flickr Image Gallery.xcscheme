@@ -38,6 +38,11 @@
                BlueprintName = "Flickr Image GalleryTests"
                ReferencedContainer = "container:Flickr Image Gallery.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "Flickr_Image_GalleryTests">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>
