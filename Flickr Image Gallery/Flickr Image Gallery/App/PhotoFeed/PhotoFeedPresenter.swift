@@ -56,9 +56,9 @@ final class PhotoFeedPresenter: BasePresenter {
     }
 }
 
-fileprivate extension BackendPhotoItem {
+fileprivate extension PhotoItem {
 
     func toDisplayModel() -> PhotoThumbnailDisplayModel {
-        return PhotoThumbnailDisplayModel(url: self.media.m)
+        return PhotoThumbnailDisplayModel(url: self.mediaURL)
     }
 }
