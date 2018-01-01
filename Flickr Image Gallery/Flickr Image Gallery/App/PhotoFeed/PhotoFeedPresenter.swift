@@ -32,13 +32,16 @@ final class PhotoFeedPresenter {
             .map { $0.count }
     }
 
-    private let repository: PhotoFeedRepository
+    private unowned var repository: PhotoFeedRepository
+    private unowned var navigator: PhotoFeedNavigator
+
     private let models = Variable<[PhotoItem]>([])
     private let refreshTrigger = BehaviorSubject<Void>(value: ())
     private let disposeBag = DisposeBag()
 
-    init(repository: PhotoFeedRepository) {
+    init(repository: PhotoFeedRepository, navigator: PhotoFeedNavigator) {
         self.repository = repository
+        self.navigator = navigator
     }
 
     /// `configure()` is called after the View is loaded
