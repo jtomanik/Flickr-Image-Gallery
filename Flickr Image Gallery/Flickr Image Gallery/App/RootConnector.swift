@@ -14,7 +14,7 @@ protocol BaseNavigator: class {
 }
 
 protocol PhotoFeedNavigator: BaseNavigator {
-    func showDetail(photoId: String)
+    func showDetail(photo: PhotoItem)
 }
 
 /// The Connector
@@ -51,17 +51,17 @@ final class RootConnector {
         return PhotoFeedViewController(presenter: feedPresenter)
     }
 
-    private func assemblePhotoDetail(photoId id: String) -> PhotoDetailViewController {
+    private func assemblePhotoDetail(photo: PhotoItem) -> PhotoDetailViewController {
         let detailPresenter = PhotoDetailPresenter(repository: repositories.photoFeedRepository, navigator: self)
-        detailPresenter.inject(modelId: id)
+        detailPresenter.inject(model: photo)
         return PhotoDetailViewController(presenter: detailPresenter)
     }
 }
 
 extension RootConnector: PhotoFeedNavigator {
 
-    func showDetail(photoId id: String) {
-        let vc = assemblePhotoDetail(photoId: id)
+    func showDetail(photo: PhotoItem) {
+        let vc = assemblePhotoDetail(photo: photo)
         rootViewController.pushViewController(vc, animated: true)
     }
 }

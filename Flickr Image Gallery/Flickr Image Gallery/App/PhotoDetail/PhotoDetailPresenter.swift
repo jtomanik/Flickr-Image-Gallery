@@ -12,7 +12,7 @@ import RxCocoa
 
 final class PhotoDetailPresenter: BasePresenter {
 
-    private var photoId: String!
+    private var model: PhotoItem!
     private var detailRepository: PhotoFeedRepository {
         return repository as! PhotoFeedRepository
     }
@@ -20,13 +20,13 @@ final class PhotoDetailPresenter: BasePresenter {
     override func configure() {
         super.configure()
 
-        guard let id = photoId else {
+        guard let model = model else {
             fatalError("PhotoDetailPresenter not properly initiated")
         }
     }
 
-    func inject(modelId id: String) {
-        photoId = id
+    func inject(model: PhotoItem) {
+        self.model = model
     }
 
     func getPhotoTitle() -> Driver<String> {

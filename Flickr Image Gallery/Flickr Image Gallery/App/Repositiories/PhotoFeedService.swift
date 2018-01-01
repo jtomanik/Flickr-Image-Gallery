@@ -17,10 +17,10 @@ protocol PhotoFeedRepository: BaseRepository {
 }
 
 protocol PhotoDetailRepository: BaseRepository {
-    func getDetails(photoId: String) -> Observable<PhotoItem>
+    func getDetails(photoId: String) -> Observable<PhotoItem?>
 }
 
-final class PhotoFeedService: PhotoFeedRepository {
+final class PhotoFeedService: PhotoFeedRepository, PhotoDetailRepository {
 
     func getPublicFeed() -> Observable<[PhotoItem]> {
         /// Current implementation mocks data source that provides two or more results for each request.
@@ -44,6 +44,11 @@ final class PhotoFeedService: PhotoFeedRepository {
             }
             return Disposables.create()
         }
+    }
+
+    func getDetails(photoId id: String) -> Observable<PhotoItem?> {
+        return getPublicFeed()
+            .map { $0.first(where: { $0.id == id }) }
     }
 }
 
