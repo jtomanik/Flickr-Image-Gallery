@@ -35,7 +35,7 @@ final class PhotoCell: UICollectionViewCell {
         disposeBag = DisposeBag()
     }
 
-    func set(displayModel: Driver<PhotoDisplayModel>) {
+    func set(displayModel: Driver<PhotoThumbnailDisplayModel>) {
 
         displayModel
             .drive(onNext: { [photoView] model in
