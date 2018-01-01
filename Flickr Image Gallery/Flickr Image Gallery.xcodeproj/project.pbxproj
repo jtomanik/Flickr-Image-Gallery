@@ -21,6 +21,8 @@
 		7A0F87A41FF830F700B82EB4 /* mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 7A3C9CA01FF59541007A7DCF /* mock.json */; };
 		7A0F87A71FF8553000B82EB4 /* TestScheduler+MarbleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F87A61FF8553000B82EB4 /* TestScheduler+MarbleTests.swift */; };
 		7A0F87AA1FFA80DB00B82EB4 /* PhotoFeedConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F87A91FFA80DB00B82EB4 /* PhotoFeedConnector.swift */; };
+		7A0F87C51FFAC7A600B82EB4 /* MockPhotoFeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F87C41FFAC7A600B82EB4 /* MockPhotoFeedService.swift */; };
+		7A0F87C81FFAC80F00B82EB4 /* MockPhotoFeedConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F87C71FFAC80F00B82EB4 /* MockPhotoFeedConnector.swift */; };
 		7A3C9C591FF3D6B7007A7DCF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3C9C581FF3D6B7007A7DCF /* AppDelegate.swift */; };
 		7A3C9C5B1FF3D6B7007A7DCF /* PhotoFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3C9C5A1FF3D6B7007A7DCF /* PhotoFeedViewController.swift */; };
 		7A3C9C601FF3D6B7007A7DCF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A3C9C5F1FF3D6B7007A7DCF /* Assets.xcassets */; };
@@ -62,6 +64,8 @@
 		7A0F87A21FF830BF00B82EB4 /* PhotoFeedTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoFeedTest.swift; sourceTree = "<group>"; };
 		7A0F87A61FF8553000B82EB4 /* TestScheduler+MarbleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TestScheduler+MarbleTests.swift"; sourceTree = "<group>"; };
 		7A0F87A91FFA80DB00B82EB4 /* PhotoFeedConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoFeedConnector.swift; sourceTree = "<group>"; };
+		7A0F87C41FFAC7A600B82EB4 /* MockPhotoFeedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPhotoFeedService.swift; sourceTree = "<group>"; };
+		7A0F87C71FFAC80F00B82EB4 /* MockPhotoFeedConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPhotoFeedConnector.swift; sourceTree = "<group>"; };
 		7A3C9C551FF3D6B7007A7DCF /* Flickr Image Gallery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Flickr Image Gallery.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A3C9C581FF3D6B7007A7DCF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7A3C9C5A1FF3D6B7007A7DCF /* PhotoFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoFeedViewController.swift; sourceTree = "<group>"; };
@@ -131,6 +135,15 @@
 			path = PhotoFeed;
 			sourceTree = "<group>";
 		};
+		7A0F87C61FFAC7D600B82EB4 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				7A0F87C41FFAC7A600B82EB4 /* MockPhotoFeedService.swift */,
+				7A0F87C71FFAC80F00B82EB4 /* MockPhotoFeedConnector.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		7A3C9C4C1FF3D6B7007A7DCF = {
 			isa = PBXGroup;
 			children = (
@@ -170,6 +183,7 @@
 				7A0F87A21FF830BF00B82EB4 /* PhotoFeedTest.swift */,
 				7A3C9C6F1FF3D6B7007A7DCF /* Info.plist */,
 				7A0F87A61FF8553000B82EB4 /* TestScheduler+MarbleTests.swift */,
+				7A0F87C61FFAC7D600B82EB4 /* Mocks */,
 			);
 			path = "Flickr Image GalleryTests";
 			sourceTree = "<group>";
@@ -523,7 +537,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A0F87A31FF830BF00B82EB4 /* PhotoFeedTest.swift in Sources */,
+				7A0F87C51FFAC7A600B82EB4 /* MockPhotoFeedService.swift in Sources */,
 				7A0F87A71FF8553000B82EB4 /* TestScheduler+MarbleTests.swift in Sources */,
+				7A0F87C81FFAC80F00B82EB4 /* MockPhotoFeedConnector.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
