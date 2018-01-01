@@ -7,18 +7,32 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
+/// The View
+/// Views and view controllers are technically distinct components, yet on iOS they almost always go hand-in-hand together, paired.
+/// I want to formalize this connection and call UIView-UIViewController pair the View.
+/// It has following characteristics:
+/// * View owns the Presenter
+/// * View contains all the layout logic
+/// * View contains all the necessary subviews
+/// * View delegates user interactions to the Presenter
+/// * View's appearance is controlled through DisplayModels that encapsulate all data to be presented
+/// * View binds to reactive properties of the presenter to get updates about DisplayModel changes
 final class PhotoListViewController: UIViewController {
+
+    private var presenter: PhotoFeedPresenter!
 
     private let collectionView: UICollectionView
     private let collectionViewLayout = UICollectionViewFlowLayout()
     private let collectionViewSpacing: CGFloat = 16.0
+    private let elements = Variable(0)
+    private let disposeBag = DisposeBag()
 
-    private let feedService = PhotoFeedService()
-    private var models: [PhotoItem] = []
-
-    convenience init() {
+    convenience init(presenter: PhotoFeedPresenter) {
         self.init(nibName: nil, bundle: nil)
+        self.presenter = presenter
     }
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -32,13 +46,37 @@ final class PhotoListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter.configure()
+
         setupView()
-        fetchData()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        presenter.start()
+
+        elements.asObservable()
+            .subscribe(onNext: { [collectionView] _ in
+                collectionView.reloadData()
+            })
+            .disposed(by: disposeBag)
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        presenter.stop()
     }
 
     private func setupView() {
-        title = L10n.Photolist.title
-        view.backgroundColor = ColorName.defaultBackground.color
+        title = presenter.displayModel.title
+        view.backgroundColor = presenter.displayModel.backgroundColor.color
+
+        presenter.items
+            .drive(elements)
+            .disposed(by: disposeBag)
+
         setupCollectionView()
     }
 
@@ -62,11 +100,6 @@ final class PhotoListViewController: UIViewController {
         collectionViewLayout.scrollDirection = .vertical
         collectionViewLayout.estimatedItemSize = PhotoCell.estimatedCellSize
     }
-
-    private func fetchData() {
-        models = feedService.getPublicFeed()
-        collectionView.reloadData()
-    }
 }
 
 extension PhotoListViewController: UICollectionViewDataSource {
@@ -76,12 +109,12 @@ extension PhotoListViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return models.count
+        return elements.value
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: PhotoCell = collectionView.dequeueReusableCell(for: indexPath)
-        cell.set(model: models[indexPath.item])
+        cell.set(displayModel: presenter.getDisplayModel(forElement: indexPath.item))
         return cell
     }
 }

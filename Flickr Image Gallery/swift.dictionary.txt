@@ -69,3 +69,6 @@ weak
 willSet
 CGRect
 Registrator
+MVVM
+MVP
+MVC

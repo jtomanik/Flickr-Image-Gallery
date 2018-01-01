@@ -6,17 +6,17 @@ import Foundation
 // swiftlint:disable file_length
 
 // swiftlint:disable explicit_type_interface identifier_name line_length nesting type_body_length type_name
-enum L10n {
+enum Localized {
 
-  enum Photolist {
+  enum PhotoList {
     /// Photo Feed
-    static let title = L10n.tr("Localizable", "photolist.title")
+    static let title = Localized.tr("Localizable", "photo_list.title")
   }
 }
 // swiftlint:enable explicit_type_interface identifier_name line_length nesting type_body_length type_name
 
-extension L10n {
-  fileprivate static func tr(_ table: String, _ key: String, _ args: CVarArg...) -> String {
+extension Localized {
+  private static func tr(_ table: String, _ key: String, _ args: CVarArg...) -> String {
     let format = NSLocalizedString(key, tableName: table, bundle: Bundle(for: BundleToken.self), comment: "")
     return String(format: format, locale: Locale.current, arguments: args)
   }

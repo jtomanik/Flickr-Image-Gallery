@@ -9,14 +9,15 @@
 import Foundation
 import UIKit
 import Kingfisher
+import RxSwift
+import RxCocoa
 
 final class PhotoCell: UICollectionViewCell {
 
     static let estimatedCellSize = CGSize(width: 250, height: 250)
 
     private let photoView = UIImageView()
-
-    private var model: PhotoItem?
+    private var disposeBag = DisposeBag()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -30,14 +31,17 @@ final class PhotoCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
 
-        model = nil
         photoView.kf.cancelDownloadTask()
+        disposeBag = DisposeBag()
     }
 
-    func set(model: PhotoItem) {
-        self.model = model
+    func set(displayModel: Driver<PhotoDisplayModel>) {
 
-        photoView.kf.setImage(with: model.media.m)
+        displayModel
+            .drive(onNext: { [photoView] model in
+                photoView.kf.setImage(with: model.url)
+            })
+            .disposed(by: disposeBag)
     }
 
     private func setupView() {
