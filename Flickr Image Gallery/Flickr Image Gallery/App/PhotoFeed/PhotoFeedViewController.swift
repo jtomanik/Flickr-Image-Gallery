@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 
 /// The View
-/// Views and view controllers are technically distinct components, yet on iOS they almost always go hand-in-hand together, paired.
+/// Views and View Controllers are technically distinct components, yet on iOS they almost always go hand-in-hand together, paired.
 /// I want to formalize this connection and call UIView-UIViewController pair the View.
 /// It has following characteristics:
 /// * View owns the Presenter
