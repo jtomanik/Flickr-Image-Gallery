@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.backgroundColor = UIColor.white
         let feedService = PhotoFeedService()
         let feedPresenter = PhotoFeedPresenter(repository: feedService)
-        let mainVC = PhotoListViewController(presenter: feedPresenter)
+        let mainVC = PhotoFeedViewController(presenter: feedPresenter)
         let rootVC = UINavigationController(rootViewController: mainVC)
         window?.rootViewController = rootVC
         self.window?.makeKeyAndVisible()

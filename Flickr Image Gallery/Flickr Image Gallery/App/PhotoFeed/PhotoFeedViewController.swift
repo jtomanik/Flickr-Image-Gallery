@@ -1,5 +1,5 @@
 //
-//  PhotoListViewController.swift
+//  PhotoFeedViewController.swift
 //  Flickr Image Gallery
 //
 //  Created by Jakub Tomanik on 27/12/2017.
@@ -20,7 +20,7 @@ import RxCocoa
 /// * View delegates user interactions to the Presenter
 /// * View's appearance is controlled through DisplayModels that encapsulate all data to be presented
 /// * View binds to reactive properties of the presenter to get updates about DisplayModel changes
-final class PhotoListViewController: UIViewController {
+final class PhotoFeedViewController: UIViewController {
 
     private var presenter: PhotoFeedPresenter!
 
@@ -102,7 +102,7 @@ final class PhotoListViewController: UIViewController {
     }
 }
 
-extension PhotoListViewController: UICollectionViewDataSource {
+extension PhotoFeedViewController: UICollectionViewDataSource {
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
