@@ -16,11 +16,7 @@ final class PhotoFeedViewController: BaseViewController {
         return presenter as! PhotoFeedPresenter
     }
 
-    private lazy var collectionView: UICollectionView = {
-        return UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
-    }()
-    private let collectionViewLayout = UICollectionViewFlowLayout()
-    private let collectionViewSpacing: CGFloat = 16.0
+    private let tableView = UITableView()
     private let elements = Variable(0)
 
     override func viewDidLoad() {
@@ -33,8 +29,8 @@ final class PhotoFeedViewController: BaseViewController {
         super.viewDidAppear(animated)
 
         elements.asObservable()
-            .subscribe(onNext: { [collectionView] _ in
-                collectionView.reloadData()
+            .subscribe(onNext: { [tableView] _ in
+                tableView.reloadData()
             })
             .disposed(by: disposeBag)
     }
@@ -45,48 +41,42 @@ final class PhotoFeedViewController: BaseViewController {
             .drive(elements)
             .disposed(by: disposeBag)
 
-        setupCollectionView()
+        setupTableView()
     }
 
-    private func setupCollectionView() {
-        view.safelyAddSubview(collectionView)
-
-        collectionView.marginToSuperview(all: 0.0)
-        collectionView.backgroundColor = view.backgroundColor
-        collectionView.register(PhotoCell.self)
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.showsVerticalScrollIndicator = false
-        collectionView.dataSource = self
-        collectionView.delegate = self
-
-        collectionViewLayout.sectionInset = UIEdgeInsets(top: collectionViewSpacing,
-                                                         left: collectionViewSpacing,
-                                                         bottom: collectionViewSpacing,
-                                                         right: collectionViewSpacing)
-        collectionViewLayout.minimumInteritemSpacing = collectionViewSpacing
-        collectionViewLayout.minimumLineSpacing = collectionViewSpacing
-        collectionViewLayout.scrollDirection = .vertical
-        collectionViewLayout.estimatedItemSize = PhotoCell.estimatedCellSize
+    func setupTableView() {
+        view.safelyAddSubview(tableView)
+        tableView.marginToSuperview(all: 0.0)
+        tableView.backgroundColor = UIColor.clear
+        tableView.register(PhotoCell.self)
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.estimatedRowHeight = 50.0
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.separatorStyle = .none
+        tableView.showsHorizontalScrollIndicator = false
+        tableView.showsVerticalScrollIndicator = false
     }
 }
 
-extension PhotoFeedViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension PhotoFeedViewController: UITableViewDataSource, UITableViewDelegate {
 
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return elements.value
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: PhotoCell = collectionView.dequeueReusableCell(for: indexPath)
-        cell.set(displayModel: feedPresenter.getDisplayModel(forElement: indexPath.item))
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: PhotoCell = tableView.dequeueReusableCell(for: indexPath)
+        cell.set(displayModel: feedPresenter.getDisplayModel(forElement: indexPath.row))
         return cell
     }
 
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        feedPresenter.selectedItem(atIndex: indexPath.item)
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        feedPresenter.selectedItem(atIndex: indexPath.row)
+        return false
     }
 }

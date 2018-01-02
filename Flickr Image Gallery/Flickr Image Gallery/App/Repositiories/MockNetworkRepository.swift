@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 
-final class MockNetworkGateway: NetworkProvider {
+final class MockNetworkRepository: NetworkProvider {
 
     enum MockNetworkErrors: Error {
         case mockFileNotFound

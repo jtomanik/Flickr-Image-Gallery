@@ -20,8 +20,12 @@ struct ImageAsset: ImageProvider {
 }
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 enum Asset {
+  enum NavBar {
+    static let backGrey = ImageAsset(name: "backGrey")
+  }
   // swiftlint:disable trailing_comma
   static let allImages: [ImageAsset] = [
+    NavBar.backGrey,
   ]
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name

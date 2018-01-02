@@ -32,7 +32,7 @@ struct ImageAsset: ImageProvider {
 {% macro casesBlock assets sp %}
 {{sp}}  {% for asset in assets %}
 {{sp}}  {% if asset.type == "image" %}
-{{sp}}  static let {{asset.name|swiftIdentifier:"pretty"|lowerFirstWord|escapeReservedKeywords}} = {{imageType}}(name: "{{asset.value}}")
+{{sp}}  static let {{asset.name|swiftIdentifier:"pretty"|lowerFirstWord|escapeReservedKeywords}} = ImageAsset(name: "{{asset.value}}")
 {{sp}}  {% elif asset.items %}
 {{sp}}  enum {{asset.name|swiftIdentifier:"pretty"|escapeReservedKeywords}} {
 {{sp}}    {% set sp2 %}{{sp}}  {% endset %}

@@ -22,7 +22,8 @@ class PhotoFeedTest: XCTestCase {
 
     private var connector: MockPhotoFeedConnector!
     private var network: NetworkProvider!
-    private var repository: PhotoFeedRepository!
+    private var gateway: PhotoFeedGateway!
+    private var useCase: UseCaseFacade!
     private var presenter: PhotoFeedPresenter!
     private var testScheduler: TestScheduler!
 
@@ -32,8 +33,10 @@ class PhotoFeedTest: XCTestCase {
         testScheduler = TestScheduler(initialClock: 0, resolution: resolution, simulateProcessingDelay: false)
         connector = MockPhotoFeedConnector()
         network = try! MockReactiveNetworkGateway(scheduler: testScheduler, mockFilename: "photo_feeed_mock")
-        repository = PhotoFeedGateway(networkProvider: network)
-        presenter = PhotoFeedPresenter(repository: repository, navigator: connector)
+        gateway = PhotoFeedRepository(networkProvider: network)
+        let gateways = UseCaseFacade.Gateways(photoFeed: gateway)
+        useCase = UseCaseFacade(gateways: gateways)
+        presenter = PhotoFeedPresenter(interactor: useCase, navigator: connector)
     }
 
     override func tearDown() {
@@ -43,7 +46,7 @@ class PhotoFeedTest: XCTestCase {
         testScheduler = nil
         connector = nil
         network = nil
-        repository = nil
+        gateway = nil
         presenter = nil
     }
 
@@ -55,7 +58,7 @@ class PhotoFeedTest: XCTestCase {
             testScheduler.start()
 
             guard
-                let gateway = repository as? PhotoFeedGateway,
+                let gateway = gateway as? PhotoFeedRepository,
                 let last = recording.events.last,
                 let value = last.value.element
             else {
@@ -83,7 +86,7 @@ class PhotoFeedTest: XCTestCase {
 
 }
 
-extension PhotoFeedGateway: ResultsExpectable {
+extension PhotoFeedRepository: ResultsExpectable {
 
     var expected: [PhotoItem] {
         let data: [PhotoItem] = [

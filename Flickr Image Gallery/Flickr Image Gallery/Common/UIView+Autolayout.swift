@@ -122,6 +122,23 @@ extension UIView {
                               constant: spacing)
     }
 
+    func horizontallyCenter(toView: UIView? = nil, withOffset: CGFloat? = nil) {
+        let offset = withOffset ?? 0
+        let refView = toView ?? self.superview
+        let constraintX = NSLayoutConstraint(item: self, attribute: .centerX, relatedBy: .equal, toItem: refView, attribute: .centerX, multiplier: 1.0, constant: offset)
+
+        constraintX.isActive = true
+    }
+
+    func centerInSuperView() {
+        let constraintX = NSLayoutConstraint(item: self, attribute: .centerX, relatedBy: .equal, toItem: self.superview, attribute: .centerX, multiplier: 1.0, constant: 0.0)
+
+        let constraintY = NSLayoutConstraint(item: self, attribute: .centerY, relatedBy: .equal, toItem: self.superview, attribute: .centerY, multiplier: 1.0, constant: 0.0)
+
+        constraintX.isActive = true
+        constraintY.isActive = true
+    }
+
     private func makeConstraint(attribute: NSLayoutAttribute, toItem: UIView?, toAttribute: NSLayoutAttribute, constant: CGFloat) -> NSLayoutConstraint {
         return NSLayoutConstraint(item: self,
                                   attribute: attribute,

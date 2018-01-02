@@ -1,5 +1,5 @@
 //
-//  PhotoFeedGateway.swift
+//  PhotoFeedGate.swift
 //  Flickr Image Gallery
 //
 //  Created by Jakub Tomanik on 02/01/2018.
@@ -9,7 +9,12 @@
 import Foundation
 import RxSwift
 
-final class PhotoFeedGateway: PhotoFeedRepository {
+/// The Repositiory
+/// A Repository mediates between the data source and the business domain of the application.
+/// It queries the data source for the data, maps the data from the data source to a business entity, and persists changes in the business entity to the data source.
+/// A repository separates the business logic contained in the Use Cases from the interactions with the underlying data source or Web service.
+/// Repositories are concrete implementations of gateways (boundaries).
+final class PhotoFeedRepository: PhotoFeedGateway {
 
     private let networkQuery: NetworkProvider
     private let url = URL(string: "https://api.flickr.com/services/feeds/photos_public.gne?format=json&nojsoncallback=1")!

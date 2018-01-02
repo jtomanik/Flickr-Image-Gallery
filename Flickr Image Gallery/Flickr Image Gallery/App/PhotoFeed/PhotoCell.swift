@@ -12,16 +12,20 @@ import Kingfisher
 import RxSwift
 import RxCocoa
 
-final class PhotoCell: UICollectionViewCell {
+final class PhotoCell: UITableViewCell {
 
-    static let estimatedCellSize = CGSize(width: 250, height: 250)
+    static let maxHeight: CGFloat = 250.0
+
+    private let margin: CGFloat = 5.0
+    private let spacing: CGFloat = 10.0
 
     private let photoView = UIImageView()
+    private var imageHeightConstraint: NSLayoutConstraint?
     private var disposeBag = DisposeBag()
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupView()
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupCell()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -32,23 +36,42 @@ final class PhotoCell: UICollectionViewCell {
         super.prepareForReuse()
 
         photoView.kf.cancelDownloadTask()
+        imageHeightConstraint?.constant = PhotoCell.maxHeight
         disposeBag = DisposeBag()
     }
 
-    func set(displayModel: Driver<PhotoThumbnailDisplayModel>) {
-
-        displayModel
-            .drive(onNext: { [photoView] model in
-                photoView.kf.setImage(with: model.url)
-            })
-            .disposed(by: disposeBag)
+    func set(displayModel model: PhotoThumbnailDisplayModel) {
+        photoView.kf.setImage(with: model.url) { [weak self] (image, error, cacheType, url) in
+            guard let image = image else {
+                return
+            }
+            self?.updateHeight(imageSize: image.size)
+        }
     }
 
-    private func setupView() {
-        contentView.setWidth(PhotoCell.estimatedCellSize.width)
-        contentView.setHeight(PhotoCell.estimatedCellSize.height)
+    private func updateHeight(imageSize size: CGSize) {
+        let maxWidth = contentView.frame.width - margin * 2
+        let maxHeight = PhotoCell.maxHeight - spacing
+        let height: CGFloat
+        if size.height >= size.width {
+            height = maxHeight
+        } else {
+            let widthRatio = maxWidth / size.width
+            let imageHeight = size.height * widthRatio
+            height = imageHeight
+        }
+        imageHeightConstraint?.constant = height
+        contentView.setNeedsLayout()
+        contentView.layoutIfNeeded()
+    }
 
+    private func setupCell() {
         contentView.safelyAddSubview(photoView)
-        photoView.marginToSuperview(all: 0.0)
+        photoView.marginToSuperview(top: spacing / 2, right: margin, bottom: spacing / 2, left: margin)
+        photoView.contentMode = .scaleAspectFit
+        if imageHeightConstraint == nil {
+            imageHeightConstraint = contentView.getHeight(PhotoCell.maxHeight).withReducedPriority
+            imageHeightConstraint?.activate()
+        }
     }
 }
