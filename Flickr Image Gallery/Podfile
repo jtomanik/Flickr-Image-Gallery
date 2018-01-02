@@ -14,6 +14,7 @@ end
 target 'Flickr Image Gallery' do
     pods
     pod 'Kingfisher', '~> 4.0'
+    pod 'Cache'
     pod 'WPAttributedMarkup', :git=> 'https://github.com/SysdataSpA/WPAttributedMarkup.git'
 end
 
