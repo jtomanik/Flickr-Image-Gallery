@@ -17,7 +17,11 @@ import RxTest
 
 final class MockPhotoFeedService: PhotoFeedRepository {
 
-    let expectedData = PhotoFeedMock.generateMockData(forResource: "mock")
+    let expectedData: [PhotoItem] = {
+        let mock = PhotoFeedMock.generateMockData(forResource: "photo_feeed_mock")
+        let result = mock.map { $0.toDomainModel() }
+        return result
+    }()
     let invocationCount = 2
 
     private let scheduler: TestScheduler

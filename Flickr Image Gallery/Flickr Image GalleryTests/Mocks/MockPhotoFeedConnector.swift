@@ -18,7 +18,11 @@ import RxTest
 final class MockPhotoFeedConnector: PhotoFeedNavigator {
     var timeShowDetailWasCalled = 0
 
-    func showDetail(photoId: String) {
+    func start() -> UIViewController {
+        return UIViewController()
+    }
+
+    func showDetail(photo: PhotoItem) {
         timeShowDetailWasCalled += 1
     }
 }
