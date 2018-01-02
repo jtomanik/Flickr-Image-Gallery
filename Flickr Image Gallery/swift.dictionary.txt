@@ -72,3 +72,9 @@ Registrator
 MVVM
 MVP
 MVC
+Configurator
+rgba
+elif
+Halligon
+Xcode
+Localizable
