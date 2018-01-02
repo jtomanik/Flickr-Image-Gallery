@@ -11,7 +11,7 @@
 		6684C54A0B495C6D4280357E /* Pods_Flickr_Image_GalleryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9317590D9AB8943C207CCAB0 /* Pods_Flickr_Image_GalleryTests.framework */; };
 		7A0A69B01FFBA193007EAC05 /* BackendPhotoFeeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0A69AF1FFBA193007EAC05 /* BackendPhotoFeeed.swift */; };
 		7A0A69B21FFBA36C007EAC05 /* RegexImageReplacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0A69B11FFBA36C007EAC05 /* RegexImageReplacer.swift */; };
-		7A0A69B41FFBA428007EAC05 /* ScaledPhotoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0A69B31FFBA428007EAC05 /* ScaledPhotoRepository.swift */; };
+		7A0A69B41FFBA428007EAC05 /* ScaledPhotoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0A69B31FFBA428007EAC05 /* ScaledPhotoUseCase.swift */; };
 		7A0A69B61FFBA4D1007EAC05 /* ImageSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0A69B51FFBA4D1007EAC05 /* ImageSizes.swift */; };
 		7A0A69B81FFBAC2D007EAC05 /* MockProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0A69B71FFBAC2D007EAC05 /* MockProtocols.swift */; };
 		7A0A69BA1FFBC6DA007EAC05 /* UseCaseFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0A69B91FFBC6DA007EAC05 /* UseCaseFacade.swift */; };
@@ -59,6 +59,8 @@
 		7A3C9C631FF3D6B7007A7DCF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A3C9C611FF3D6B7007A7DCF /* LaunchScreen.storyboard */; };
 		7A3C9C931FF53ABD007A7DCF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7A3C9C911FF53ABD007A7DCF /* Localizable.strings */; };
 		7A3C9CA11FF59541007A7DCF /* photo_feeed_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 7A3C9CA01FF59541007A7DCF /* photo_feeed_mock.json */; };
+		7A963E891FFBCF3900111794 /* BaseInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A963E881FFBCF3900111794 /* BaseInteractor.swift */; };
+		7A963E8B1FFBE0F200111794 /* UIViewController+BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A963E8A1FFBE0F200111794 /* UIViewController+BackButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,7 +80,7 @@
 		720A205F9A58FAE270762322 /* Pods-Flickr Image GalleryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flickr Image GalleryTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Flickr Image GalleryTests/Pods-Flickr Image GalleryTests.release.xcconfig"; sourceTree = "<group>"; };
 		7A0A69AF1FFBA193007EAC05 /* BackendPhotoFeeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendPhotoFeeed.swift; sourceTree = "<group>"; };
 		7A0A69B11FFBA36C007EAC05 /* RegexImageReplacer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexImageReplacer.swift; sourceTree = "<group>"; };
-		7A0A69B31FFBA428007EAC05 /* ScaledPhotoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaledPhotoRepository.swift; sourceTree = "<group>"; };
+		7A0A69B31FFBA428007EAC05 /* ScaledPhotoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaledPhotoUseCase.swift; sourceTree = "<group>"; };
 		7A0A69B51FFBA4D1007EAC05 /* ImageSizes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSizes.swift; sourceTree = "<group>"; };
 		7A0A69B71FFBAC2D007EAC05 /* MockProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockProtocols.swift; sourceTree = "<group>"; };
 		7A0A69B91FFBC6DA007EAC05 /* UseCaseFacade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCaseFacade.swift; sourceTree = "<group>"; };
@@ -135,6 +137,8 @@
 		7A3C9C8E1FF5232B007A7DCF /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = swiftgen.yml; sourceTree = "<group>"; };
 		7A3C9C921FF53ABD007A7DCF /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7A3C9CA01FF59541007A7DCF /* photo_feeed_mock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = photo_feeed_mock.json; sourceTree = "<group>"; };
+		7A963E881FFBCF3900111794 /* BaseInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseInteractor.swift; sourceTree = "<group>"; };
+		7A963E8A1FFBE0F200111794 /* UIViewController+BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+BackButton.swift"; sourceTree = "<group>"; };
 		9317590D9AB8943C207CCAB0 /* Pods_Flickr_Image_GalleryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flickr_Image_GalleryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4D67439110FBF217614B7CA /* Pods-Flickr Image Gallery.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flickr Image Gallery.release.xcconfig"; path = "Pods/Target Support Files/Pods-Flickr Image Gallery/Pods-Flickr Image Gallery.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -182,7 +186,7 @@
 			children = (
 				7A0A69B51FFBA4D1007EAC05 /* ImageSizes.swift */,
 				7A0A69B11FFBA36C007EAC05 /* RegexImageReplacer.swift */,
-				7A0A69B31FFBA428007EAC05 /* ScaledPhotoRepository.swift */,
+				7A0A69B31FFBA428007EAC05 /* ScaledPhotoUseCase.swift */,
 				7A0F88231FFB574B00B82EB4 /* Entities */,
 			);
 			path = DomainUseCases;
@@ -205,8 +209,9 @@
 				7A0F87E41FFAD14D00B82EB4 /* RootConnector.swift */,
 				7A0F87CB1FFAD14D00B82EB4 /* BasePresenter.swift */,
 				7A0F87CC1FFAD14D00B82EB4 /* BaseViewController.swift */,
-				7A0A69B91FFBC6DA007EAC05 /* UseCaseFacade.swift */,
+				7A963E881FFBCF3900111794 /* BaseInteractor.swift */,
 				7A0F88211FFB570500B82EB4 /* BaseGateway.swift */,
+				7A0A69B91FFBC6DA007EAC05 /* UseCaseFacade.swift */,
 				7A0F87CD1FFAD14D00B82EB4 /* PhotoDetail */,
 				7A0F87D51FFAD14D00B82EB4 /* PhotoFeed */,
 				7A0A69BB1FFBC7B7007EAC05 /* DomainUseCases */,
@@ -265,6 +270,7 @@
 				7A0F87EF1FFAD14D00B82EB4 /* UITableView+GenericRegistrator.swift */,
 				7A0F87F01FFAD14D00B82EB4 /* UIView+Autolayout.swift */,
 				7A0F88181FFAF3E000B82EB4 /* DateFormatters.swift */,
+				7A963E8A1FFBE0F200111794 /* UIViewController+BackButton.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -652,6 +658,7 @@
 				7A0F87F11FFAD14D00B82EB4 /* AppDelegate.swift in Sources */,
 				7A0A69BA1FFBC6DA007EAC05 /* UseCaseFacade.swift in Sources */,
 				7A0F88091FFAD14D00B82EB4 /* Colors.swift in Sources */,
+				7A963E891FFBCF3900111794 /* BaseInteractor.swift in Sources */,
 				7A0F87F21FFAD14D00B82EB4 /* BasePresenter.swift in Sources */,
 				7A0A69B01FFBA193007EAC05 /* BackendPhotoFeeed.swift in Sources */,
 				7A0F87F41FFAD14D00B82EB4 /* PhotoCopyrightCell.swift in Sources */,
@@ -663,7 +670,7 @@
 				7A0F88051FFAD14D00B82EB4 /* BackendPhotoItem.swift in Sources */,
 				7A0F880E1FFAD14D00B82EB4 /* StylingProtocols.swift in Sources */,
 				7A0F880F1FFAD14D00B82EB4 /* UICollectionView+GenericRegistrator.swift in Sources */,
-				7A0A69B41FFBA428007EAC05 /* ScaledPhotoRepository.swift in Sources */,
+				7A0A69B41FFBA428007EAC05 /* ScaledPhotoUseCase.swift in Sources */,
 				7A0F880D1FFAD14D00B82EB4 /* strings.swift in Sources */,
 				7A0F87F31FFAD14D00B82EB4 /* BaseViewController.swift in Sources */,
 				7A0F87FD1FFAD14D00B82EB4 /* PhotoCell.swift in Sources */,
@@ -672,6 +679,7 @@
 				7A0F88151FFAD64E00B82EB4 /* MockNetworkRepository.swift in Sources */,
 				7A0F88131FFAD5B900B82EB4 /* PhotoItem.swift in Sources */,
 				7A0F87FC1FFAD14D00B82EB4 /* ViewDisplayModel.swift in Sources */,
+				7A963E8B1FFBE0F200111794 /* UIViewController+BackButton.swift in Sources */,
 				7A0F88071FFAD14D00B82EB4 /* RootConnector.swift in Sources */,
 				7A0F88271FFB591E00B82EB4 /* PhotoFeedRepository.swift in Sources */,
 				7A0A69B21FFBA36C007EAC05 /* RegexImageReplacer.swift in Sources */,
