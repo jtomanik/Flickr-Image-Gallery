@@ -1,5 +1,5 @@
 //
-//  PhotoFeedGateway.swift
+//  PhotoFeedGate.swift
 //  Flickr Image Gallery
 //
 //  Created by Jakub Tomanik on 02/01/2018.
@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 
-final class PhotoFeedGateway: PhotoFeedRepository {
+final class PhotoFeedRepository: PhotoFeedGateway {
 
     private let networkQuery: NetworkProvider
     private let url = URL(string: "https://api.flickr.com/services/feeds/photos_public.gne?format=json&nojsoncallback=1")!

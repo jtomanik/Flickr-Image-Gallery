@@ -30,17 +30,17 @@ protocol PhotoFeedNavigator: BaseNavigator {
 final class RootConnector {
 
     private struct Repositories {
-        let photoFeedRepository: PhotoFeedRepository
-        let scaledPhotoRepository: ScaledPhotoRepository
+        let photoFeedRepository: PhotoFeedGateway
+        let scaledPhotoRepository: ScaledPhotoGateway
     }
 
     private let repositories: Repositories
     private weak var rootViewController: UINavigationController!
 
     init() {
-        let networkProvider: NetworkProvider = BaseGateway()
-        repositories = Repositories(photoFeedRepository: PhotoFeedGateway(networkProvider: networkProvider),
-                                    scaledPhotoRepository: ScaledPhotoGateway())
+        let networkProvider: NetworkProvider = BaseRepository()
+        repositories = Repositories(photoFeedRepository: PhotoFeedRepository(networkProvider: networkProvider),
+                                    scaledPhotoRepository: ScaledPhotoRepository())
     }
 
     func start() -> UIViewController {

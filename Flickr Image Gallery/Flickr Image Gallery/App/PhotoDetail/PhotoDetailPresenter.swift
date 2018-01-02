@@ -16,8 +16,8 @@ final class PhotoDetailPresenter: BasePresenter {
                                                backgroundColor: ColorName.defaultBackground)
 
     private var model: PhotoItem!
-    private var detailRepository: ScaledPhotoRepository {
-        return repository as! ScaledPhotoRepository
+    private var detailRepository: ScaledPhotoGateway {
+        return repository as! ScaledPhotoGateway
     }
 
     override func configure() {

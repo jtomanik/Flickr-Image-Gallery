@@ -22,7 +22,7 @@ class PhotoFeedTest: XCTestCase {
 
     private var connector: MockPhotoFeedConnector!
     private var network: NetworkProvider!
-    private var repository: PhotoFeedRepository!
+    private var repository: PhotoFeedGateway!
     private var presenter: PhotoFeedPresenter!
     private var testScheduler: TestScheduler!
 
@@ -32,7 +32,7 @@ class PhotoFeedTest: XCTestCase {
         testScheduler = TestScheduler(initialClock: 0, resolution: resolution, simulateProcessingDelay: false)
         connector = MockPhotoFeedConnector()
         network = try! MockReactiveNetworkGateway(scheduler: testScheduler, mockFilename: "photo_feeed_mock")
-        repository = PhotoFeedGateway(networkProvider: network)
+        repository = PhotoFeedRepository(networkProvider: network)
         presenter = PhotoFeedPresenter(repository: repository, navigator: connector)
     }
 
@@ -55,7 +55,7 @@ class PhotoFeedTest: XCTestCase {
             testScheduler.start()
 
             guard
-                let gateway = repository as? PhotoFeedGateway,
+                let gateway = repository as? PhotoFeedRepository,
                 let last = recording.events.last,
                 let value = last.value.element
             else {
@@ -83,7 +83,7 @@ class PhotoFeedTest: XCTestCase {
 
 }
 
-extension PhotoFeedGateway: ResultsExpectable {
+extension PhotoFeedRepository: ResultsExpectable {
 
     var expected: [PhotoItem] {
         let data: [PhotoItem] = [

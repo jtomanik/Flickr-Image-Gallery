@@ -36,10 +36,10 @@ class BasePresenter: BaseViewConfigurator {
 
     let disposeBag = DisposeBag()
 
-    unowned var repository: BaseRepository
+    unowned var repository: BaseGateway
     unowned var navigator: BaseNavigator
 
-    init(repository: BaseRepository, navigator: BaseNavigator) {
+    init(repository: BaseGateway, navigator: BaseNavigator) {
         self.repository = repository
         self.navigator = navigator
     }

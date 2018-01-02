@@ -20,8 +20,8 @@ final class PhotoFeedPresenter: BasePresenter {
             .map { $0.count }
     }
 
-    private var feedRepository: PhotoFeedRepository {
-        return repository as! PhotoFeedRepository
+    private var feedRepository: PhotoFeedGateway {
+        return repository as! PhotoFeedGateway
     }
     private var feedNavigator: PhotoFeedNavigator {
         return navigator as! PhotoFeedNavigator
