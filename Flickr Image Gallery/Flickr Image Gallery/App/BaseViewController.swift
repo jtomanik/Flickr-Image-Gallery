@@ -58,7 +58,10 @@ class BaseViewController: UIViewController {
     }
 
     private func setupView() {
-        title = presenter.displayModel?.title
-        view.backgroundColor = presenter.displayModel?.backgroundColor.color
+        guard let presenter = presenter as? BaseViewConfigurator else {
+            return
+        }
+        title = presenter.displayModel.title
+        view.backgroundColor = presenter.displayModel.backgroundColor.color
     }
 }

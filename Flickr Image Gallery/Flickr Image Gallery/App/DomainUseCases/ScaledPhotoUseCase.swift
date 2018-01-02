@@ -1,5 +1,5 @@
 //
-//  ScaledPhotoRepository.swift
+//  ScaledPhotoUseCase.swift
 //  Flickr Image Gallery
 //
 //  Created by Jakub Tomanik on 02/01/2018.
@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 
-final class ScaledPhotoRepository: ScaledPhotoGateway {
+final class ScaledPhotoUseCase: ScaledPhotoInteractor {
 
     func getLargePhoto(for photo: PhotoItem) -> PhotoItem {
         return getPhotoWithImage(ofSize: .medium800, for: photo)
