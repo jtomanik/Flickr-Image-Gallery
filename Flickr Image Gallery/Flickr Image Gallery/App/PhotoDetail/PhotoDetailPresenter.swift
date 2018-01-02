@@ -12,39 +12,47 @@ import RxCocoa
 
 final class PhotoDetailPresenter: BasePresenter {
 
+    let displayModel = ViewDisplayModel(title: Localized.PhotoDetail.title,
+                                               backgroundColor: ColorName.defaultBackground)
+
     private var model: PhotoItem!
-    private var detailRepository: PhotoFeedRepository {
-        return repository as! PhotoFeedRepository
+    private var detailRepository: PhotoDetailRepository {
+        return repository as! PhotoDetailRepository
     }
 
     override func configure() {
         super.configure()
 
-        guard let model = model else {
+        guard let oldModel = model else {
             fatalError("PhotoDetailPresenter not properly initiated")
         }
+
+        model = detailRepository.getLargePhoto(for: oldModel)
     }
 
     func inject(model: PhotoItem) {
         self.model = model
     }
 
-    func getPhotoTitle() -> Driver<String> {
-        return Driver.just("Long title")
+    func getPhotoTitle() -> String {
+        return model.title
     }
 
-    func getPhotoURL() -> Driver<URL> {
-        return Driver.just(URL(fileURLWithPath: ""))
+    func getPhotoURL() -> URL {
+        return model.mediaURL
     }
 
-    func getPhotoDescription() -> Driver<String> {
-        return Driver.just("Description")
+    func getPhotoDescription() -> String {
+        return model.description
     }
 
-    func getPhotoCopyright() -> Driver<PhotoCopyrightDisplayModel> {
-        let mock = PhotoCopyrightDisplayModel(dateTakenDescription: "",
-                                              datePublishedDescription: "",
-                                              author: "")
-        return Driver.just(mock)
+    func getPhotoCopyright() -> PhotoCopyrightDisplayModel {
+        return generateCopyright()
+    }
+
+    private func generateCopyright() -> PhotoCopyrightDisplayModel {
+        return PhotoCopyrightDisplayModel(dateTakenDescription: LongDateFormatter.shared.string(from: model.dateTaken),
+                                          datePublishedDescription: "\(Localized.PhotoDetail.publishedOn) \(ShortDateFormatter.shared.string(from: model.published))",
+                                          author: "\(Localized.PhotoDetail.takenBy) \(model.author.name)")
     }
 }
