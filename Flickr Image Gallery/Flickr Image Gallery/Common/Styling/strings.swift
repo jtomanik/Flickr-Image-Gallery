@@ -8,6 +8,15 @@ import Foundation
 // swiftlint:disable explicit_type_interface identifier_name line_length nesting type_body_length type_name
 enum Localized {
 
+  enum PhotoDetail {
+    /// Published on:
+    static let publishedOn = Localized.tr("Localizable", "photo_detail.published_on")
+    /// Taken by:
+    static let takenBy = Localized.tr("Localizable", "photo_detail.taken_by")
+    /// Photo Detail
+    static let title = Localized.tr("Localizable", "photo_detail.title")
+  }
+
   enum PhotoList {
     /// Photo Feed
     static let title = Localized.tr("Localizable", "photo_list.title")
