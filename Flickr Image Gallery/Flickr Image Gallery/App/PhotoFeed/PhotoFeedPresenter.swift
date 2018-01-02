@@ -12,10 +12,10 @@ import RxCocoa
 
 final class PhotoFeedPresenter: BasePresenter {
 
-    public let displayModel = ViewDisplayModel(title: Localized.PhotoList.title,
+    let displayModel = ViewDisplayModel(title: Localized.PhotoList.title,
                                                  backgroundColor: ColorName.defaultBackground)
 
-    public var items: Driver<Int> {
+    var items: Driver<Int> {
         return models.asDriver()
             .map { $0.count }
     }

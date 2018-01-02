@@ -56,8 +56,8 @@ final class PhotoFeedViewController: BaseViewController {
         collectionView.register(PhotoCell.self)
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
-
         collectionView.dataSource = self
+        collectionView.delegate = self
 
         collectionViewLayout.sectionInset = UIEdgeInsets(top: collectionViewSpacing,
                                                          left: collectionViewSpacing,
@@ -70,7 +70,7 @@ final class PhotoFeedViewController: BaseViewController {
     }
 }
 
-extension PhotoFeedViewController: UICollectionViewDataSource {
+extension PhotoFeedViewController: UICollectionViewDataSource, UICollectionViewDelegate {
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -84,5 +84,9 @@ extension PhotoFeedViewController: UICollectionViewDataSource {
         let cell: PhotoCell = collectionView.dequeueReusableCell(for: indexPath)
         cell.set(displayModel: feedPresenter.getDisplayModel(forElement: indexPath.item))
         return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        feedPresenter.selectedItem(atIndex: indexPath.item)
     }
 }
