@@ -16,6 +16,7 @@ import RxTest
 @testable import Flickr_Image_Gallery
 
 final class MockPhotoFeedConnector: PhotoFeedNavigator {
+    
     var timeShowDetailWasCalled = 0
 
     func start() -> UIViewController {

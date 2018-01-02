@@ -10,14 +10,14 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-final class PhotoDetailPresenter: BasePresenter {
+final class PhotoDetailPresenter: BasePresenter, BaseViewConfigurator {
 
-    let displayModel = ViewDisplayModel(title: Localized.PhotoDetail.title,
+    let displayModel: BaseViewDisplayModel = ViewDisplayModel(title: Localized.PhotoDetail.title,
                                                backgroundColor: ColorName.defaultBackground)
 
     private var model: PhotoItem!
-    private var detailRepository: PhotoDetailRepository {
-        return repository as! PhotoDetailRepository
+    private var scaledPhotoUseCase: ScaledPhotoInteractor {
+        return useCaseFacade as! ScaledPhotoInteractor
     }
 
     override func configure() {
@@ -27,7 +27,7 @@ final class PhotoDetailPresenter: BasePresenter {
             fatalError("PhotoDetailPresenter not properly initiated")
         }
 
-        model = detailRepository.getLargePhoto(for: oldModel)
+        model = scaledPhotoUseCase.getLargePhoto(for: oldModel)
     }
 
     func inject(model: PhotoItem) {

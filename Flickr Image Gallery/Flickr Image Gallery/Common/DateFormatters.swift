@@ -53,3 +53,22 @@ final class LongDateFormatter {
         return dateFormatter.date(from: string)
     }
 }
+
+final class ISODateFormatter {
+
+    static let shared = ISODateFormatter()
+
+    private let dateFormatter = ISO8601DateFormatter()
+
+    private init() {
+        dateFormatter.formatOptions = .withInternetDateTime
+    }
+
+    func string(from date: Date) -> String {
+        return dateFormatter.string(from: date)
+    }
+
+    func date(from string: String) -> Date? {
+        return dateFormatter.date(from: string)
+    }
+}

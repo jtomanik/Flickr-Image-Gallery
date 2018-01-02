@@ -8,6 +8,7 @@
 
 import Foundation
 
+// swiftlint:disable variable_name
 struct BackendPhotoItem: Codable {
 
     enum CodingKeys: String, CodingKey {
@@ -22,6 +23,10 @@ struct BackendPhotoItem: Codable {
         case tags
     }
 
+    struct MediaURL: Codable {
+        let m: URL
+    }
+
     let title: String
     let link: URL
     let media: MediaURL
@@ -31,9 +36,4 @@ struct BackendPhotoItem: Codable {
     let author: String
     let authorId: String
     let tags: String
-}
-
-// swiftlint:disable variable_name
-struct MediaURL: Codable {
-    let m: URL
 }

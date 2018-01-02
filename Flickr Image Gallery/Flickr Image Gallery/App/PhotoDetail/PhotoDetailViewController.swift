@@ -17,8 +17,6 @@ final class PhotoDetailViewController: BaseViewController {
     }
 
     private let tableView = UITableView()
-    private let collectionViewLayout = UICollectionViewFlowLayout()
-    private let collectionViewSpacing: CGFloat = 16.0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,10 +43,16 @@ final class PhotoDetailViewController: BaseViewController {
         tableView.estimatedRowHeight = 50.0
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.separatorStyle = .none
+        tableView.showsHorizontalScrollIndicator = false
+        tableView.showsVerticalScrollIndicator = false
     }
 }
 
 extension PhotoDetailViewController: UITableViewDataSource, UITableViewDelegate {
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4

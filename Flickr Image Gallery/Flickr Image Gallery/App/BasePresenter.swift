@@ -11,13 +11,7 @@ import RxSwift
 import RxCocoa
 
 protocol BaseViewConfigurator {
-    var displayModel: BaseViewDisplayModel? { get }
-}
-
-extension BaseViewConfigurator {
-    var displayModel: BaseViewDisplayModel? {
-        return nil
-    }
+    var displayModel: BaseViewDisplayModel { get }
 }
 
 /// The Presenter
@@ -32,16 +26,16 @@ extension BaseViewConfigurator {
 /// * Presenter has all it's dependencies injected
 /// * Presenter has no dependencies to UIKit
 /// * Presenter can be easily tested
-class BasePresenter: BaseViewConfigurator {
+class BasePresenter {
 
     let disposeBag = DisposeBag()
 
-    unowned var repository: BaseRepository
-    unowned var navigator: BaseNavigator
+    unowned var useCaseFacade: BaseInteractor
+    unowned var connector: BaseNavigator
 
-    init(repository: PhotoFeedRepository, navigator: PhotoFeedNavigator) {
-        self.repository = repository
-        self.navigator = navigator
+    init(interactor: BaseInteractor, navigator: BaseNavigator) {
+        self.useCaseFacade = interactor
+        self.connector = navigator
     }
 
     /// `configure()` is called after the View is loaded
