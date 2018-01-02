@@ -1,0 +1,48 @@
+PODS:
+  - Cache (4.1.2)
+  - Kingfisher (4.6.0)
+  - RxBlocking (4.0.0):
+    - RxSwift (~> 4.0)
+  - RxCocoa (4.0.0):
+    - RxSwift (~> 4.0)
+  - RxSwift (4.0.0)
+  - RxSwiftExt (3.1.0):
+    - RxSwiftExt/Core (= 3.1.0)
+  - RxSwiftExt/Core (3.1.0):
+    - RxSwift (~> 4.0)
+  - RxTest (4.0.0):
+    - RxSwift (~> 4.0)
+  - WPAttributedMarkup (1.0.2)
+
+DEPENDENCIES:
+  - Cache
+  - Kingfisher (~> 4.0)
+  - RxBlocking (~> 4.0)
+  - RxCocoa (~> 4.0)
+  - RxSwift (~> 4.0)
+  - RxSwiftExt
+  - RxTest (~> 4.0)
+  - WPAttributedMarkup (from `https://github.com/SysdataSpA/WPAttributedMarkup.git`)
+
+EXTERNAL SOURCES:
+  WPAttributedMarkup:
+    :git: https://github.com/SysdataSpA/WPAttributedMarkup.git
+
+CHECKOUT OPTIONS:
+  WPAttributedMarkup:
+    :commit: 390b9e7634552dec23449545cc8d151afebdbdd4
+    :git: https://github.com/SysdataSpA/WPAttributedMarkup.git
+
+SPEC CHECKSUMS:
+  Cache: bd0233fc688b5e83a27bcd87807db7e6f23adcc5
+  Kingfisher: 1ea13a1b18297ae8afa0965e83ecdb68e1b71987
+  RxBlocking: 923c2c8106d80d7c2d6b276afd66ce3b10824836
+  RxCocoa: d62846ca96495d862fa4c59ea7d87e5031d7340e
+  RxSwift: fd680d75283beb5e2559486f3c0ff852f0d35334
+  RxSwiftExt: a9b9c8e94be009146707f9fcb16eaf3cc1f3910c
+  RxTest: 0041e792cede35e53e4749f378d21482af0e9d12
+  WPAttributedMarkup: fc5e74fd95de4823a64d5881d3c07c10a17e2ec3
+
+PODFILE CHECKSUM: 74cf791b892d50d473b5f7cbc3d29b73a3200b0d
+
+COCOAPODS: 1.3.1

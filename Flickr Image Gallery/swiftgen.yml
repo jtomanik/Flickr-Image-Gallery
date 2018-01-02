@@ -1,0 +1,14 @@
+input_dir: "Flickr Image Gallery/Support Files/"
+output_dir: "Flickr Image Gallery/Common/Styling/"
+strings:
+  paths: "Base.lproj/Localizable.strings"
+  templatePath: "Flickr Image Gallery/Common/Styling/Strings.stencil"
+  output: "Strings.swift"
+xcassets:
+  paths: "Assets.xcassets"
+  templatePath: "Flickr Image Gallery/Common/Styling/Images.stencil"
+  output: "Images.swift"
+colors:
+  paths: "FlickrGallery.clr"
+  templatePath: "Flickr Image Gallery/Common/Styling/Colors.stencil"
+  output: "Colors.swift"

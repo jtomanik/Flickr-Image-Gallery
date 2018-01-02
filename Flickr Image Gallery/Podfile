@@ -1,0 +1,26 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+# Uncomment this line to define a global platform for your project
+platform :ios, '10.0'
+# Uncomment this line if you're using Swift
+use_frameworks!
+
+def pods
+    pod 'RxSwift',    '~> 4.0'
+    pod 'RxCocoa',    '~> 4.0'
+    pod 'RxSwiftExt'
+end
+
+target 'Flickr Image Gallery' do
+    pods
+    pod 'Kingfisher', '~> 4.0'
+    pod 'Cache'
+    pod 'WPAttributedMarkup', :git=> 'https://github.com/SysdataSpA/WPAttributedMarkup.git'
+end
+
+# RxTests and RxBlocking make the most sense in the context of unit/integration tests
+target 'Flickr Image GalleryTests' do
+    pods
+    pod 'RxBlocking', '~> 4.0'
+    pod 'RxTest',     '~> 4.0'
+end
