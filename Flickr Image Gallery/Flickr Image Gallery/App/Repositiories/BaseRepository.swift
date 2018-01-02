@@ -46,15 +46,7 @@ class BaseRepository: NetworkProvider {
                 subscriber.onCompleted()
                 return Disposables.create()
             }
-            storage.async.object(ofType: Data.self, forKey: url) { (result) in
-                switch result {
-                case .value(let data):
-                    subscriber.onNext(data)
-                    subscriber.onCompleted()
-                case .error:
-                    subscriber.onCompleted()
-                }
-            }
+            subscriber.onCompleted()
             return Disposables.create()
         }
 

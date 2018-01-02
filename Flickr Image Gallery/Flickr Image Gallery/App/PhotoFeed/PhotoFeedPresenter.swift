@@ -10,9 +10,9 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-final class PhotoFeedPresenter: BasePresenter {
+final class PhotoFeedPresenter: BasePresenter, BaseViewConfigurator {
 
-    let displayModel = ViewDisplayModel(title: Localized.PhotoList.title,
+    let displayModel: BaseViewDisplayModel = ViewDisplayModel(title: Localized.PhotoList.title,
                                                  backgroundColor: ColorName.defaultBackground)
 
     var items: Driver<Int> {
@@ -20,11 +20,11 @@ final class PhotoFeedPresenter: BasePresenter {
             .map { $0.count }
     }
 
-    private var feedRepository: PhotoFeedGateway {
-        return repository as! PhotoFeedGateway
+    private var feedUseCase: PhotoFeedInteractor {
+        return useCaseFacade as! PhotoFeedInteractor
     }
-    private var feedNavigator: PhotoFeedNavigator {
-        return navigator as! PhotoFeedNavigator
+    private var feedConnector: PhotoFeedNavigator {
+        return connector as! PhotoFeedNavigator
     }
 
     private let models = Variable<[PhotoItem]>([])
@@ -34,7 +34,7 @@ final class PhotoFeedPresenter: BasePresenter {
         super.configure()
 
         refreshTrigger
-            .flatMapLatest { [feedRepository] _ in feedRepository.getPublicFeed() }
+            .flatMapLatest { [feedUseCase] _ in feedUseCase.getPublicFeed() }
             .bind(to: models)
             .disposed(by: disposeBag)
     }
@@ -50,14 +50,13 @@ final class PhotoFeedPresenter: BasePresenter {
         refreshTrigger.onNext(())
     }
 
-    func getDisplayModel(forElement index: Int) -> Driver<PhotoThumbnailDisplayModel> {
-        return models.asDriver()
-            .map { $0[index].toDisplayModel() }
+    func getDisplayModel(forElement index: Int) -> PhotoThumbnailDisplayModel {
+        return models.value[index].toDisplayModel()
     }
 
     func selectedItem(atIndex index: Int) {
         let item = models.value[index]
-        feedNavigator.showDetail(photo: item)
+        feedConnector.showDetail(photo: item)
     }
 }
 
