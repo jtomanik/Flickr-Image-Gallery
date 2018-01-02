@@ -13,9 +13,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    private var rootConnector: RootConnector!
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
 
+        rootConnector = RootConnector()
         setupWindow()
 
         return true
@@ -25,11 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let bounds = UIScreen.main.bounds
         window = UIWindow(frame: bounds)
         window?.backgroundColor = UIColor.white
-        let feedService = PhotoFeedService()
-        let feedPresenter = PhotoFeedPresenter(repository: feedService)
-        let mainVC = PhotoListViewController(presenter: feedPresenter)
-        let rootVC = UINavigationController(rootViewController: mainVC)
-        window?.rootViewController = rootVC
+        window?.rootViewController = rootConnector.start()
         self.window?.makeKeyAndVisible()
     }
 }

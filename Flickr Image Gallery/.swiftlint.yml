@@ -67,5 +67,6 @@ variable_name:
     - ids
     - all
     - top
+    - raw
 reporter: "xcode" # reporter type (xcode, json, csv, checkstyle, junit)
 

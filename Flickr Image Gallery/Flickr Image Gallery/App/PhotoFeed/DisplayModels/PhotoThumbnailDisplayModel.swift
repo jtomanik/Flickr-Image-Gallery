@@ -1,5 +1,5 @@
 //
-//  PhotoDisplayModel.swift
+//  PhotoThumbnailDisplayModel.swift
 //  Flickr Image Gallery
 //
 //  Created by Jakub Tomanik on 30/12/2017.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-/// UIKit independent abstraction of view that will be showing photo details
-struct PhotoDisplayModel {
+/// UIKit independent abstraction of view that will be showing photo thumbnail
+struct PhotoThumbnailDisplayModel {
     let url: URL
 }

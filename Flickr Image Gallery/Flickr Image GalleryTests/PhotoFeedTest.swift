@@ -20,6 +20,7 @@ let resolution: TimeInterval = 0.2 // seconds
 // swiftlint:disable type_name
 class PhotoFeedTest: XCTestCase {
 
+    private var connector: MockPhotoFeedConnector!
     private var repository: MockPhotoFeedService!
     private var presenter: PhotoFeedPresenter!
     private var testScheduler: TestScheduler!
@@ -28,8 +29,9 @@ class PhotoFeedTest: XCTestCase {
         super.setUp()
         
         testScheduler = TestScheduler(initialClock: 0, resolution: resolution, simulateProcessingDelay: false)
+        connector = MockPhotoFeedConnector()
         repository = MockPhotoFeedService(scheduler: testScheduler)
-        presenter = PhotoFeedPresenter(repository: repository)
+        presenter = PhotoFeedPresenter(repository: repository, navigator: connector)
     }
 
     override func tearDown() {
@@ -69,23 +71,4 @@ class PhotoFeedTest: XCTestCase {
         }
     }
 
-}
-
-private final class MockPhotoFeedService: PhotoFeedRepository {
-
-    let expectedData = PhotoFeedMock.generateMockData(forResource: "mock")
-    let invocationCount = 2
-
-    private let scheduler: TestScheduler
-    private lazy var events: [String: [PhotoItem]] = ["e": self.expectedData]
-
-    init(scheduler: TestScheduler) {
-        self.scheduler = scheduler
-    }
-
-    func getPublicFeed() -> Observable<[PhotoItem]> {
-        return scheduler.mock(values: events) {
-            return "-e------e-|"
-        }
-    }
 }
