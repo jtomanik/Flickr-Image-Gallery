@@ -41,12 +41,14 @@ final class PhotoDetailViewController: BaseViewController {
         tableView.register(PhotoDescriptionCell.self)
         tableView.register(PhotoCopyrightCell.self)
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.estimatedRowHeight = 50.0
         tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.separatorStyle = .none
     }
 }
 
-extension PhotoDetailViewController: UITableViewDataSource {
+extension PhotoDetailViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
@@ -73,6 +75,9 @@ extension PhotoDetailViewController: UITableViewDataSource {
         default:
             fatalError("PhotoDetailViewController requested cell of invalid index: \(indexPath.debugDescription)")
         }
+    }
 
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return false
     }
 }
