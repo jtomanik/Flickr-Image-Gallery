@@ -46,8 +46,6 @@
 		7A0F88151FFAD64E00B82EB4 /* PhotoFeedMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F88141FFAD64E00B82EB4 /* PhotoFeedMock.swift */; };
 		7A0F88171FFAD7D400B82EB4 /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F88161FFAD7D400B82EB4 /* Author.swift */; };
 		7A0F88191FFAF3E000B82EB4 /* DateFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F88181FFAF3E000B82EB4 /* DateFormatters.swift */; };
-		7A0F881C1FFB108F00B82EB4 /* 24492623707_size_info_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 7A0F881B1FFB108F00B82EB4 /* 24492623707_size_info_mock.json */; };
-		7A0F881E1FFB11C800B82EB4 /* 24492623837_size_info_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 7A0F881D1FFB11C800B82EB4 /* 24492623837_size_info_mock.json */; };
 		7A0F88201FFB3CD500B82EB4 /* BasePhotoDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F881F1FFB3CD500B82EB4 /* BasePhotoDetailCell.swift */; };
 		7A3C9C601FF3D6B7007A7DCF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A3C9C5F1FF3D6B7007A7DCF /* Assets.xcassets */; };
 		7A3C9C631FF3D6B7007A7DCF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A3C9C611FF3D6B7007A7DCF /* LaunchScreen.storyboard */; };
@@ -106,8 +104,6 @@
 		7A0F88141FFAD64E00B82EB4 /* PhotoFeedMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoFeedMock.swift; sourceTree = "<group>"; };
 		7A0F88161FFAD7D400B82EB4 /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
 		7A0F88181FFAF3E000B82EB4 /* DateFormatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatters.swift; sourceTree = "<group>"; };
-		7A0F881B1FFB108F00B82EB4 /* 24492623707_size_info_mock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = 24492623707_size_info_mock.json; sourceTree = "<group>"; };
-		7A0F881D1FFB11C800B82EB4 /* 24492623837_size_info_mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 24492623837_size_info_mock.json; sourceTree = "<group>"; };
 		7A0F881F1FFB3CD500B82EB4 /* BasePhotoDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePhotoDetailCell.swift; sourceTree = "<group>"; };
 		7A3C9C551FF3D6B7007A7DCF /* Flickr Image Gallery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Flickr Image Gallery.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A3C9C5F1FF3D6B7007A7DCF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -308,8 +304,6 @@
 			isa = PBXGroup;
 			children = (
 				7A3C9CA01FF59541007A7DCF /* photo_feeed_mock.json */,
-				7A0F881B1FFB108F00B82EB4 /* 24492623707_size_info_mock.json */,
-				7A0F881D1FFB11C800B82EB4 /* 24492623837_size_info_mock.json */,
 				7A3C9C5F1FF3D6B7007A7DCF /* Assets.xcassets */,
 				7A3C9C611FF3D6B7007A7DCF /* LaunchScreen.storyboard */,
 				7A3C9C911FF53ABD007A7DCF /* Localizable.strings */,
@@ -436,8 +430,6 @@
 				7A3C9C631FF3D6B7007A7DCF /* LaunchScreen.storyboard in Resources */,
 				7A3C9C931FF53ABD007A7DCF /* Localizable.strings in Resources */,
 				7A3C9C601FF3D6B7007A7DCF /* Assets.xcassets in Resources */,
-				7A0F881C1FFB108F00B82EB4 /* 24492623707_size_info_mock.json in Resources */,
-				7A0F881E1FFB11C800B82EB4 /* 24492623837_size_info_mock.json in Resources */,
 				7A3C9CA11FF59541007A7DCF /* photo_feeed_mock.json in Resources */,
 				7A0F88081FFAD14D00B82EB4 /* Colors.stencil in Resources */,
 			);
