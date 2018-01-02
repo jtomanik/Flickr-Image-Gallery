@@ -1,5 +1,5 @@
 //
-//  PhotoFeedConnector.swift
+//  RootConnector.swift
 //  Flickr Image Gallery
 //
 //  Created by Jakub Tomanik on 01/01/2018.
@@ -9,8 +9,12 @@
 import Foundation
 import UIKit
 
-protocol PhotoFeedNavigator: class {
-    func showDetail(photoId: String)
+protocol BaseNavigator: class {
+    func start() -> UIViewController
+}
+
+protocol PhotoFeedNavigator: BaseNavigator {
+    func showDetail(photo: PhotoItem)
 }
 
 /// The Connector
@@ -23,17 +27,17 @@ protocol PhotoFeedNavigator: class {
 /// * Creating instances of dependencies
 /// * injecting proper dependencies into the Views and Presenters
 /// * Showing and Hiding of Views
-final class PhotoFeedConnector {
+final class RootConnector {
 
     private struct Repositories {
         let photoFeedRepository: PhotoFeedRepository
     }
 
-    private let repositiories: Repositories
+    private let repositories: Repositories
     private weak var rootViewController: UINavigationController!
 
     init() {
-        repositiories = Repositories(photoFeedRepository: PhotoFeedService())
+        repositories = Repositories(photoFeedRepository: PhotoFeedService())
     }
 
     func start() -> UIViewController {
@@ -43,14 +47,21 @@ final class PhotoFeedConnector {
     }
 
     private func assemblePhotoFeed() -> PhotoFeedViewController {
-        let feedPresenter = PhotoFeedPresenter(repository: repositiories.photoFeedRepository, navigator: self)
+        let feedPresenter = PhotoFeedPresenter(repository: repositories.photoFeedRepository, navigator: self)
         return PhotoFeedViewController(presenter: feedPresenter)
+    }
+
+    private func assemblePhotoDetail(photo: PhotoItem) -> PhotoDetailViewController {
+        let detailPresenter = PhotoDetailPresenter(repository: repositories.photoFeedRepository, navigator: self)
+        detailPresenter.inject(model: photo)
+        return PhotoDetailViewController(presenter: detailPresenter)
     }
 }
 
-extension PhotoFeedConnector: PhotoFeedNavigator {
+extension RootConnector: PhotoFeedNavigator {
 
-    func showDetail(photoId: String) {
-
+    func showDetail(photo: PhotoItem) {
+        let vc = assemblePhotoDetail(photo: photo)
+        rootViewController.pushViewController(vc, animated: true)
     }
 }

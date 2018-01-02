@@ -18,47 +18,47 @@ extension UIView {
     }
 
     func alignLeft(_ toItem: UIView, toAttribute: NSLayoutAttribute, constant: CGFloat) {
-        let constraint = NSLayoutConstraint(item: self,
-                                            attribute: .left,
-                                            relatedBy: .equal,
-                                            toItem: toItem,
-                                            attribute: toAttribute,
-                                            multiplier: 1.0,
-                                            constant: constant)
-        constraint.isActive = true
+        NSLayoutConstraint.activate([getAlignedLeft(toItem: toItem,
+                                                    toAttribute: toAttribute,
+                                                    constant: constant)
+        ])
+    }
+
+    func getAlignedLeft(toItem: UIView, toAttribute: NSLayoutAttribute, constant: CGFloat) -> NSLayoutConstraint {
+        return makeConstraint(attribute: .left, toItem: toItem, toAttribute: toAttribute, constant: constant)
     }
 
     func alignRight(_ toItem: UIView, toAttribute: NSLayoutAttribute, constant: CGFloat) {
-        let constraint = NSLayoutConstraint(item: self,
-                                            attribute: .right,
-                                            relatedBy: .equal,
-                                            toItem: toItem,
-                                            attribute: toAttribute,
-                                            multiplier: 1.0,
-                                            constant: constant)
-        constraint.isActive = true
+        NSLayoutConstraint.activate([getAlignedRight(toItem: toItem,
+                                                     toAttribute: toAttribute,
+                                                     constant: constant)
+        ])
+    }
+
+    func getAlignedRight(toItem: UIView, toAttribute: NSLayoutAttribute, constant: CGFloat) -> NSLayoutConstraint {
+        return makeConstraint(attribute: .right, toItem: toItem, toAttribute: toAttribute, constant: constant)
     }
 
     func alignTop(_ toItem: UIView, toAttribute: NSLayoutAttribute, constant: CGFloat) {
-        let constraint = NSLayoutConstraint(item: self,
-                                            attribute: .top,
-                                            relatedBy: .equal,
-                                            toItem: toItem,
-                                            attribute: toAttribute,
-                                            multiplier: 1.0,
-                                            constant: constant)
-        constraint.isActive = true
+        NSLayoutConstraint.activate([getAlignedTop(toItem: toItem,
+                                                   toAttribute: toAttribute,
+                                                   constant: constant)
+        ])
+    }
+
+    func getAlignedTop(toItem: UIView, toAttribute: NSLayoutAttribute, constant: CGFloat) -> NSLayoutConstraint {
+        return makeConstraint(attribute: .top, toItem: toItem, toAttribute: toAttribute, constant: constant)
     }
 
     func alignBottom(_ toItem: UIView, toAttribute: NSLayoutAttribute, constant: CGFloat) {
-        let constraint = NSLayoutConstraint(item: self,
-                                            attribute: .bottom,
-                                            relatedBy: .equal,
-                                            toItem: toItem,
-                                            attribute: toAttribute,
-                                            multiplier: 1.0,
-                                            constant: constant)
-        constraint.isActive = true
+        NSLayoutConstraint.activate([getAlignedBottom(toItem: toItem,
+                                                      toAttribute: toAttribute,
+                                                      constant: constant)
+        ])
+    }
+
+    func getAlignedBottom(toItem: UIView, toAttribute: NSLayoutAttribute, constant: CGFloat) -> NSLayoutConstraint {
+        return makeConstraint(attribute: .bottom, toItem: toItem, toAttribute: toAttribute, constant: constant)
     }
 
     func marginToSuperview(top: CGFloat? = nil, right: CGFloat? = nil, bottom: CGFloat? = nil, left: CGFloat? = nil) {
@@ -90,24 +90,57 @@ extension UIView {
     }
 
     func setHeight(_ height: CGFloat) {
-        let constraint = NSLayoutConstraint(item: self,
-                                            attribute: .height,
-                                            relatedBy: .equal,
-                                            toItem: nil,
-                                            attribute: .notAnAttribute,
-                                            multiplier: 1.0,
-                                            constant: height)
-        constraint.isActive = true
+        NSLayoutConstraint.activate([getHeight(height)])
+    }
+
+    func getHeight(_ height: CGFloat) -> NSLayoutConstraint {
+        return makeConstraint(attribute: .height,
+                              toItem: nil,
+                              toAttribute: .notAnAttribute,
+                              constant: height)
     }
 
     func setWidth(_ width: CGFloat) {
-        let constraint = NSLayoutConstraint(item: self,
-                                            attribute: .width,
-                                            relatedBy: .equal,
-                                            toItem: nil,
-                                            attribute: .notAnAttribute,
-                                            multiplier: 1.0,
-                                            constant: width)
-        constraint.isActive = true
+        NSLayoutConstraint.activate([getWidth(width)])
+    }
+
+    func getWidth(_ width: CGFloat) -> NSLayoutConstraint {
+        return makeConstraint(attribute: .width,
+                              toItem: nil,
+                              toAttribute: .notAnAttribute,
+                              constant: width)
+    }
+
+    func below(view: UIView, withSpacing spacing: CGFloat) {
+        NSLayoutConstraint.activate([getBelow(view: view, withSpacing: spacing)])
+    }
+
+    func getBelow(view: UIView, withSpacing spacing: CGFloat) -> NSLayoutConstraint {
+        return makeConstraint(attribute: .top,
+                              toItem: view,
+                              toAttribute: .bottom,
+                              constant: spacing)
+    }
+
+    private func makeConstraint(attribute: NSLayoutAttribute, toItem: UIView?, toAttribute: NSLayoutAttribute, constant: CGFloat) -> NSLayoutConstraint {
+        return NSLayoutConstraint(item: self,
+                                  attribute: attribute,
+                                  relatedBy: .equal,
+                                  toItem: toItem,
+                                  attribute: toAttribute,
+                                  multiplier: 1.0,
+                                  constant: constant)
+    }
+}
+
+extension NSLayoutConstraint {
+
+    func activate() {
+        NSLayoutConstraint.activate([self])
+    }
+
+    var withReducedPriority: NSLayoutConstraint {
+        self.priority = UILayoutPriority(UILayoutPriority.required.rawValue - 1)
+        return self
     }
 }

@@ -10,56 +10,39 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-/// The Presenter
-/// This Presenter is responsible for driving PhotoFeed screen.
-/// It is a common ground between "Presenter" and "ViewModel" from two sister architectures MVP and MVVM,
-/// It has following characteristics:
-/// * Presenter is owned by the View
-/// * Presenter contains all presentation logic
-/// * Presenter contains the logic to handle user interactions
-/// * Presenter provides reactive data binding mechanism to the View via DisplayModels to update Views's appearance automatically
-/// * Presenter has no references to the View
-/// * Presenter has all it's dependencies injected
-/// * Presenter has no dependencies to UIKit
-/// * Presenter can be easily tested
-final class PhotoFeedPresenter {
+final class PhotoFeedPresenter: BasePresenter {
 
-    public let displayModel = ViewDisplayModel(title: Localized.PhotoList.title,
+    let displayModel = ViewDisplayModel(title: Localized.PhotoList.title,
                                                  backgroundColor: ColorName.defaultBackground)
 
-    public var items: Driver<Int> {
+    var items: Driver<Int> {
         return models.asDriver()
             .map { $0.count }
     }
 
-    private unowned var repository: PhotoFeedRepository
-    private unowned var navigator: PhotoFeedNavigator
+    private var feedRepository: PhotoFeedRepository {
+        return repository as! PhotoFeedRepository
+    }
+    private var feedNavigator: PhotoFeedNavigator {
+        return navigator as! PhotoFeedNavigator
+    }
 
     private let models = Variable<[PhotoItem]>([])
     private let refreshTrigger = BehaviorSubject<Void>(value: ())
-    private let disposeBag = DisposeBag()
 
-    init(repository: PhotoFeedRepository, navigator: PhotoFeedNavigator) {
-        self.repository = repository
-        self.navigator = navigator
-    }
+    override func configure() {
+        super.configure()
 
-    /// `configure()` is called after the View is loaded
-    func configure() {
         refreshTrigger
-            .flatMapLatest { [repository] _ in repository.getPublicFeed() }
+            .flatMapLatest { [feedRepository] _ in feedRepository.getPublicFeed() }
             .bind(to: models)
             .disposed(by: disposeBag)
     }
 
-    /// `start()` is called everytime the View will be showed
-    func start() {
+    override func start() {
+        super.start()
+
         refreshTrigger.onNext(())
-    }
-
-    /// `stop()` is called everytime the View disappeared
-    func stop() {
-
     }
 
     // `refresh()` is called to refresh Presenter's state
@@ -67,15 +50,20 @@ final class PhotoFeedPresenter {
         refreshTrigger.onNext(())
     }
 
-    func getDisplayModel(forElement index: Int) -> Driver<PhotoDisplayModel> {
+    func getDisplayModel(forElement index: Int) -> Driver<PhotoThumbnailDisplayModel> {
         return models.asDriver()
             .map { $0[index].toDisplayModel() }
+    }
+
+    func selectedItem(atIndex index: Int) {
+        let item = models.value[index]
+        feedNavigator.showDetail(photo: item)
     }
 }
 
 fileprivate extension PhotoItem {
 
-    func toDisplayModel() -> PhotoDisplayModel {
-        return PhotoDisplayModel(url: self.media.m)
+    func toDisplayModel() -> PhotoThumbnailDisplayModel {
+        return PhotoThumbnailDisplayModel(url: self.mediaURL)
     }
 }

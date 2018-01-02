@@ -8,3 +8,7 @@
 
 
 "photo_list.title" = "Photo Feed";
+"photo_detail.title" = "Photo Detail";
+"photo_detail.taken_by" = "Taken by:";
+"photo_detail.published_on" = "Published on:";
+

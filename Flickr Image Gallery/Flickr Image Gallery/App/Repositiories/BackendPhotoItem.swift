@@ -1,5 +1,5 @@
 //
-//  PhotoItem.swift
+//  BackendPhotoItem.swift
 //  Flickr Image Gallery
 //
 //  Created by Jakub Tomanik on 28/12/2017.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct PhotoItem: Codable {
+struct BackendPhotoItem: Codable {
 
     enum CodingKeys: String, CodingKey {
         case title
@@ -18,6 +18,7 @@ struct PhotoItem: Codable {
         case description
         case published
         case author
+        case authorId = "author_id"
         case tags
     }
 
@@ -28,6 +29,7 @@ struct PhotoItem: Codable {
     let description: String
     let published: Date
     let author: String
+    let authorId: String
     let tags: String
 }
 

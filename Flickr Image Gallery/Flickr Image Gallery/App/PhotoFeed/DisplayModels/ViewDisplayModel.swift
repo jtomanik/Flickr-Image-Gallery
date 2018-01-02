@@ -8,8 +8,13 @@
 
 import Foundation
 
+protocol BaseViewDisplayModel {
+    var title: TextProvider { get }
+    var backgroundColor: ColorProvider { get }
+}
+
 /// UIKit independent abstraction of generic view
-struct ViewDisplayModel {
+struct ViewDisplayModel: BaseViewDisplayModel {
     let title: TextProvider
     let backgroundColor: ColorProvider
 }

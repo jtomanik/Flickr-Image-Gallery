@@ -13,12 +13,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    private var rootConnector: PhotoFeedConnector!
+    private var rootConnector: RootConnector!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
 
-        rootConnector = PhotoFeedConnector()
+        rootConnector = RootConnector()
         setupWindow()
 
         return true
