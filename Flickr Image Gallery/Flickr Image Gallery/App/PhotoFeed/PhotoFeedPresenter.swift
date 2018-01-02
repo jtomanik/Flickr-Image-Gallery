@@ -54,6 +54,11 @@ final class PhotoFeedPresenter: BasePresenter {
         return models.asDriver()
             .map { $0[index].toDisplayModel() }
     }
+
+    func selectedItem(atIndex index: Int) {
+        let item = models.value[index]
+        feedNavigator.showDetail(photo: item)
+    }
 }
 
 fileprivate extension PhotoItem {
