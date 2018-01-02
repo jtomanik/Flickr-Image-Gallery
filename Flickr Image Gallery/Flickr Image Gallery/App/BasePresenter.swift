@@ -39,7 +39,7 @@ class BasePresenter: BaseViewConfigurator {
     unowned var repository: BaseRepository
     unowned var navigator: BaseNavigator
 
-    init(repository: PhotoFeedRepository, navigator: PhotoFeedNavigator) {
+    init(repository: BaseRepository, navigator: BaseNavigator) {
         self.repository = repository
         self.navigator = navigator
     }

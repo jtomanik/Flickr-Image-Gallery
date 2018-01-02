@@ -31,13 +31,16 @@ final class RootConnector {
 
     private struct Repositories {
         let photoFeedRepository: PhotoFeedRepository
+        let scaledPhotoRepository: ScaledPhotoRepository
     }
 
     private let repositories: Repositories
     private weak var rootViewController: UINavigationController!
 
     init() {
-        repositories = Repositories(photoFeedRepository: PhotoFeedService())
+        let networkProvider: NetworkProvider = BaseGateway()
+        repositories = Repositories(photoFeedRepository: PhotoFeedGateway(networkProvider: networkProvider),
+                                    scaledPhotoRepository: ScaledPhotoGateway())
     }
 
     func start() -> UIViewController {
@@ -52,7 +55,7 @@ final class RootConnector {
     }
 
     private func assemblePhotoDetail(photo: PhotoItem) -> PhotoDetailViewController {
-        let detailPresenter = PhotoDetailPresenter(repository: repositories.photoFeedRepository, navigator: self)
+        let detailPresenter = PhotoDetailPresenter(repository: repositories.scaledPhotoRepository, navigator: self)
         detailPresenter.inject(model: photo)
         return PhotoDetailViewController(presenter: detailPresenter)
     }
