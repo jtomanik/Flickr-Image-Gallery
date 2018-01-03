@@ -21,11 +21,12 @@ let resolution: TimeInterval = 0.2 // seconds
 class PhotoFeedTest: XCTestCase {
 
     private var connector: MockPhotoFeedConnector!
-    private var network: NetworkProvider!
-    private var gateway: PhotoFeedGateway!
+    private var network: MockReactiveNetworkGateway!
+    private var gateway: PhotoFeedRepository!
     private var useCase: UseCaseFacade!
     private var presenter: PhotoFeedPresenter!
     private var testScheduler: TestScheduler!
+    private var disposeBag: DisposeBag!
 
     override func setUp() {
         super.setUp()
@@ -37,6 +38,7 @@ class PhotoFeedTest: XCTestCase {
         let gateways = UseCaseFacade.Gateways(photoFeed: gateway)
         useCase = UseCaseFacade(gateways: gateways)
         presenter = PhotoFeedPresenter(interactor: useCase, navigator: connector)
+        disposeBag = DisposeBag()
     }
 
     override func tearDown() {
@@ -48,24 +50,45 @@ class PhotoFeedTest: XCTestCase {
         network = nil
         gateway = nil
         presenter = nil
+        disposeBag = nil
+    }
+
+    func testPhotoFeedGateway() {
+        SharingScheduler.mock(scheduler: testScheduler) {
+            let recording = testScheduler.record(source: gateway.getPublicFeed())
+            testScheduler.start()
+
+            let lastValue = recording.events.flatMap { $0.value.element }.last!
+            let expected = gateway.expected
+            let invocationCount = network.invocationCount
+
+            XCTAssertEqual(recording.events.count - 1, invocationCount)
+            XCTAssertEqual(expected, lastValue)
+        }
+    }
+
+    func testPhotoFeedUseCase() {
+        SharingScheduler.mock(scheduler: testScheduler) {
+            let recording = testScheduler.record(source: useCase.getPublicFeed())
+            testScheduler.start()
+
+            let lastValue = recording.events.flatMap { $0.value.element }.last!
+            let expected = gateway.expected
+            let invocationCount = network.invocationCount
+
+            XCTAssertEqual(recording.events.count - 1, invocationCount)
+            XCTAssertEqual(expected, lastValue)
+        }
     }
 
     func testPresenterItemCount() {
         SharingScheduler.mock(scheduler: testScheduler) {
             presenter.configure()
             let recording = testScheduler.record(source: presenter.items)
-
             testScheduler.start()
 
-            guard
-                let gateway = gateway as? PhotoFeedRepository,
-                let last = recording.events.last,
-                let value = last.value.element
-            else {
-                    XCTFail()
-                    return
-            }
-            XCTAssertEqual(gateway.expected.count, value)
+            let lastValue = recording.events.last!.value.element!
+            XCTAssertEqual(gateway.expected.count, lastValue)
         }
     }
 
@@ -73,17 +96,29 @@ class PhotoFeedTest: XCTestCase {
         SharingScheduler.mock(scheduler: testScheduler) {
             presenter.configure()
             let recording = testScheduler.record(source: presenter.items)
-
             testScheduler.start()
 
-            guard let gateway = network as? MockReactiveNetworkGateway else {
-                XCTFail()
-                return
-            }
-            XCTAssertEqual(recording.events.count, gateway.invocationCount+1)
+            XCTAssertEqual(recording.events.count - 1, network.invocationCount)
         }
     }
 
+    func testPresentersInteractionWithConnector() {
+        presenter.configure()
+
+        let recording = testScheduler.record(source: presenter.items)
+        testScheduler.start()
+
+        let count = recording.events.last!.value.element!
+        for i in 0..<count {
+            presenter?.selectedItem(atIndex: i)
+        }
+
+        let expeccted = gateway.expected
+        let lastItem = expeccted.last!
+
+        XCTAssertEqual(connector.timeShowDetailWasCalled, expeccted.count)
+        XCTAssertEqual(connector.passedPhoto!.id, lastItem.id)
+    }
 }
 
 extension PhotoFeedRepository: ResultsExpectable {
@@ -119,5 +154,12 @@ extension PhotoFeedRepository: ResultsExpectable {
                       tags: ["2017", "australia", "hobart", "parliamentlawns", "rogertwong", "sel85f18z", "sony85mmf18", "sonya7ii", "sonyalpha7ii", "sonyfe85mmf18", "sonyilce7m2", "tasmania", "tasteoftasmania", "movie", "screen"])
         ]
         return data
+    }
+}
+
+extension PhotoItem: Equatable {
+
+    public static func ==(lhs: PhotoItem, rhs: PhotoItem) -> Bool {
+        return lhs.id == rhs.id
     }
 }
