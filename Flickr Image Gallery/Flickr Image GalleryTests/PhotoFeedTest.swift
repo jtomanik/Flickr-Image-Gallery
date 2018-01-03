@@ -67,27 +67,38 @@ class PhotoFeedTest: XCTestCase {
         }
     }
 
+    func testPhotoFeedUseCase() {
+        SharingScheduler.mock(scheduler: testScheduler) {
+            let recording = testScheduler.record(source: useCase.getPublicFeed())
+            testScheduler.start()
+
+            let lastValue = recording.events.flatMap { $0.value.element }.last!
+            let expected = gateway.expected
+            let invocationCount = network.invocationCount
+
+            XCTAssertEqual(recording.events.count - 1, invocationCount)
+            XCTAssertEqual(expected, lastValue)
+        }
+    }
+
     func testPresenterItemCount() {
         SharingScheduler.mock(scheduler: testScheduler) {
             presenter.configure()
             let recording = testScheduler.record(source: presenter.items)
-
             testScheduler.start()
 
-            let last = recording.events.last!
-            let value = last.value.element!
-            XCTAssertEqual(gateway.expected.count, value)
+            let lastValue = recording.events.last!.value.element!
+            XCTAssertEqual(gateway.expected.count, lastValue)
         }
     }
 
     func testPresenterReloadCount() {
         SharingScheduler.mock(scheduler: testScheduler) {
             presenter.configure()
-
             let recording = testScheduler.record(source: presenter.items)
             testScheduler.start()
 
-            XCTAssertEqual(recording.events.count, network.invocationCount+1)
+            XCTAssertEqual(recording.events.count - 1, network.invocationCount)
         }
     }
 
