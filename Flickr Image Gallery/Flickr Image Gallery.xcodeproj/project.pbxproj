@@ -55,6 +55,7 @@
 		7A0F88221FFB570500B82EB4 /* BaseGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F88211FFB570500B82EB4 /* BaseGateway.swift */; };
 		7A0F88251FFB576400B82EB4 /* BaseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F88241FFB576400B82EB4 /* BaseRepository.swift */; };
 		7A0F88271FFB591E00B82EB4 /* PhotoFeedRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F88261FFB591E00B82EB4 /* PhotoFeedRepository.swift */; };
+		7A31B4931FFD3366001B3BBD /* PhotoDetailTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A31B4921FFD3366001B3BBD /* PhotoDetailTest.swift */; };
 		7A3C9C601FF3D6B7007A7DCF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A3C9C5F1FF3D6B7007A7DCF /* Assets.xcassets */; };
 		7A3C9C631FF3D6B7007A7DCF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A3C9C611FF3D6B7007A7DCF /* LaunchScreen.storyboard */; };
 		7A3C9C931FF53ABD007A7DCF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7A3C9C911FF53ABD007A7DCF /* Localizable.strings */; };
@@ -123,6 +124,7 @@
 		7A0F88211FFB570500B82EB4 /* BaseGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseGateway.swift; sourceTree = "<group>"; };
 		7A0F88241FFB576400B82EB4 /* BaseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRepository.swift; sourceTree = "<group>"; };
 		7A0F88261FFB591E00B82EB4 /* PhotoFeedRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoFeedRepository.swift; sourceTree = "<group>"; };
+		7A31B4921FFD3366001B3BBD /* PhotoDetailTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailTest.swift; sourceTree = "<group>"; };
 		7A3C9C551FF3D6B7007A7DCF /* Flickr Image Gallery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Flickr Image Gallery.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A3C9C5F1FF3D6B7007A7DCF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7A3C9C621FF3D6B7007A7DCF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -347,6 +349,7 @@
 			isa = PBXGroup;
 			children = (
 				7A0F87A21FF830BF00B82EB4 /* PhotoFeedTest.swift */,
+				7A31B4921FFD3366001B3BBD /* PhotoDetailTest.swift */,
 				7A3C9C6F1FF3D6B7007A7DCF /* Info.plist */,
 				7A0F87A61FF8553000B82EB4 /* TestScheduler+MarbleTests.swift */,
 				7A0F87C61FFAC7D600B82EB4 /* Mocks */,
@@ -446,7 +449,7 @@
 				TargetAttributes = {
 					7A3C9C541FF3D6B7007A7DCF = {
 						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					7A3C9C681FF3D6B7007A7DCF = {
 						CreatedOnToolsVersion = 9.2;
@@ -706,6 +709,7 @@
 				7A0F87A71FF8553000B82EB4 /* TestScheduler+MarbleTests.swift in Sources */,
 				7A0F87C81FFAC80F00B82EB4 /* MockPhotoFeedConnector.swift in Sources */,
 				7A0A69B81FFBAC2D007EAC05 /* MockProtocols.swift in Sources */,
+				7A31B4931FFD3366001B3BBD /* PhotoDetailTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -851,12 +855,13 @@
 			baseConfigurationReference = 25B32C520C8F739FF7D77550 /* Pods-Flickr Image Gallery.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "Flickr Image Gallery/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "re.tind.app.demo.Flickr-Image-Gallery";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -867,12 +872,13 @@
 			baseConfigurationReference = E4D67439110FBF217614B7CA /* Pods-Flickr Image Gallery.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "Flickr Image Gallery/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "re.tind.app.demo.Flickr-Image-Gallery";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

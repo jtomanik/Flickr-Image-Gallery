@@ -16,3 +16,12 @@ protocol ResultsExpectable {
     associatedtype ResutType
     var expected: ResutType { get }
 }
+
+class AnyResultsExpectable<T>: ResultsExpectable {
+
+    let expected: T
+
+    init<U: ResultsExpectable>(_ expectable: U) where U.ResutType == T {
+        expected = expectable.expected
+    }
+}
